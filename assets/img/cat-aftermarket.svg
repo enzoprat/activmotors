@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#cfd9e4"/></linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7fafc"/><stop offset="1" stop-color="#c3ceda"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fb4d6"/><stop offset="1" stop-color="#4f7ba6"/></linearGradient>
+  </defs>
+  <rect width="400" height="270" fill="url(#bg2)"/>
+  <ellipse cx="200" cy="228" rx="170" ry="20" fill="#a9b6c4" opacity=".45"/>
+  <!-- car silhouette (front 3/4) -->
+  <g transform="translate(20 40)">
+    <path d="M40 150 C36 118 58 96 92 88 L134 58 C146 48 162 44 178 44 h84 c20 0 38 8 50 22 l30 34 c22 6 32 20 32 40 v18 c0 6-5 11-11 11H51c-6 0-11-5-11-11z" fill="url(#body)"/>
+    <path d="M140 66 C150 56 162 54 176 54 h80 c16 0 28 6 38 18 l20 24H124z" fill="url(#glass)"/>
+    <path d="M196 54h8v54h-8z" fill="#e8eef4" opacity=".8"/>
+    <!-- headlight -->
+    <path d="M300 112h48c10 0 16 6 16 14s-6 12-16 12h-48z" fill="#eaf2fa"/>
+    <path d="M306 118h40c6 0 10 4 10 8s-4 8-10 8h-40z" fill="#bcd7ef"/>
+    <!-- grille -->
+    <rect x="286" y="146" width="86" height="26" rx="6" fill="#3d4a58"/>
+    <g stroke="#8894a3" stroke-width="3"><path d="M292 152h74M292 159h74M292 166h74"/></g>
+    <!-- bumper -->
+    <rect x="40" y="172" width="332" height="16" rx="8" fill="#9fabb9"/>
+    <!-- wheels -->
+    <circle cx="112" cy="188" r="30" fill="#232b35"/><circle cx="112" cy="188" r="14" fill="#aeb9c6"/>
+    <circle cx="300" cy="188" r="30" fill="#232b35"/><circle cx="300" cy="188" r="14" fill="#aeb9c6"/>
+    <!-- mirror -->
+    <path d="M132 88h22l6 12h-28z" fill="#8e9bab"/>
+  </g>
+  <!-- side mirror part floating -->
+  <g transform="translate(48 214)">
+    <path d="M0 0h44l10 20H8z" fill="#7d8b9b"/>
+    <path d="M6 4h34l6 12H10z" fill="#cfe0ee"/>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6fa"/><stop offset="1" stop-color="#dde4ec"/></linearGradient>
+    <linearGradient id="drum" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1a3f6b"/><stop offset=".35" stop-color="#2f6ba8"/>
+      <stop offset=".6" stop-color="#245a90"/><stop offset="1" stop-color="#15355c"/>
+    </linearGradient>
+    <linearGradient id="jug" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c98b12"/><stop offset=".4" stop-color="#f2b134"/>
+      <stop offset="1" stop-color="#a8710a"/>
+    </linearGradient>
+    <linearGradient id="jug2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8e3a12"/><stop offset=".4" stop-color="#d4671f"/>
+      <stop offset="1" stop-color="#7b3210"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="270" fill="url(#bg3)"/>
+  <ellipse cx="200" cy="238" rx="180" ry="18" fill="#adb9c7" opacity=".4"/>
+
+  <!-- big drum -->
+  <g transform="translate(258 60)">
+    <rect x="0" y="10" width="118" height="176" rx="6" fill="url(#drum)"/>
+    <ellipse cx="59" cy="14" rx="59" ry="14" fill="#3d7cbd"/>
+    <ellipse cx="59" cy="14" rx="42" ry="9" fill="#2a5f96"/>
+    <circle cx="40" cy="12" r="7" fill="#8fb4d6"/><circle cx="78" cy="12" r="5" fill="#8fb4d6"/>
+    <g fill="#0f2c4c" opacity=".55"><rect x="0" y="56" width="118" height="12"/><rect x="0" y="128" width="118" height="12"/></g>
+    <rect x="14" y="80" width="90" height="40" rx="4" fill="#eef3f8"/>
+    <rect x="20" y="88" width="60" height="7" rx="3.5" fill="#1f4d7d"/>
+    <rect x="20" y="100" width="44" height="5" rx="2.5" fill="#5f86ad"/>
+    <rect x="20" y="109" width="52" height="5" rx="2.5" fill="#c8862a"/>
+  </g>
+
+  <!-- jug 1 -->
+  <g transform="translate(30 96)">
+    <path d="M12 30h74a10 10 0 0 1 10 10v96a10 10 0 0 1-10 10H12a10 10 0 0 1-10-10V40a10 10 0 0 1 10-10z" fill="url(#jug)"/>
+    <rect x="34" y="6" width="30" height="26" rx="5" fill="#b8800f"/>
+    <rect x="30" y="0" width="38" height="12" rx="4" fill="#5c4207"/>
+    <rect x="14" y="60" width="70" height="48" rx="4" fill="#f7f9fc"/>
+    <rect x="20" y="68" width="46" height="7" rx="3.5" fill="#b8000f" opacity=".85"/>
+    <rect x="20" y="80" width="34" height="5" rx="2.5" fill="#5f6b7a"/>
+    <rect x="20" y="90" width="52" height="10" rx="3" fill="#1f4d7d"/>
+  </g>
+
+  <!-- jug 2 -->
+  <g transform="translate(132 118)">
+    <path d="M10 24h66a9 9 0 0 1 9 9v82a9 9 0 0 1-9 9H10a9 9 0 0 1-9-9V33a9 9 0 0 1 9-9z" fill="url(#jug2)"/>
+    <rect x="30" y="4" width="26" height="22" rx="4" fill="#93430f"/>
+    <rect x="27" y="0" width="32" height="10" rx="3" fill="#4a2107"/>
+    <rect x="12" y="50" width="62" height="42" rx="4" fill="#fbfcfe"/>
+    <rect x="18" y="58" width="40" height="6" rx="3" fill="#c2410c"/>
+    <rect x="18" y="69" width="30" height="4" rx="2" fill="#6b7280"/>
+    <rect x="18" y="78" width="46" height="8" rx="3" fill="#1f2937"/>
+  </g>
+
+  <!-- small bottle -->
+  <g transform="translate(224 168)">
+    <path d="M6 18h30a6 6 0 0 1 6 6v46a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6z" fill="#2f6ba8"/>
+    <rect x="14" y="2" width="14" height="18" rx="3" fill="#1f4d7d"/>
+    <rect x="6" y="34" width="30" height="22" rx="3" fill="#eef3f8"/>
+  </g>
+</svg>
