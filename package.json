@@ -1,0 +1,21 @@
+{
+  "name": "uae-sourcing",
+  "version": "1.0.0",
+  "description": "UAE Sourcing — export partner landing page",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "eleventy --serve --port=4789",
+    "build": "eleventy",
+    "cms": "PORT=8082 decap-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enzoprat/uaesourcing.git"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "decap-server": "^3.10.0"
+  }
+}

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="{{ site.meta.lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ site.meta.title }}</title>
+<meta name="description" content="{{ site.meta.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+{% include "sprite.njk" %}
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <ul class="topbar__left">
+      {%- for badge in site.topbar.badges %}
+      <li><svg class="ico"><use href="#{{ badge.icon }}"></use></svg> {{ badge.label }}</li>
+      {%- endfor %}
+    </ul>
+    <ul class="topbar__right">
+      <li><a href="{{ site.company.phone | telLink }}"><svg class="ico"><use href="#phone"></use></svg> {{ site.company.phone }}</a></li>
+      <li><a href="mailto:{{ site.company.email }}"><svg class="ico"><use href="#mail"></use></svg> {{ site.company.email }}</a></li>
+      <li class="lang">
+        <button class="lang__btn" type="button" aria-expanded="false">EN <svg class="ico ico--xs"><use href="#chevron"></use></svg></button>
+        <div class="lang__menu">
+          {%- for lang in site.topbar.languages %}
+          <a href="{{ lang.url }}"{% if lang.active %} class="is-active"{% endif %}>{{ lang.label }}</a>
+          {%- endfor %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="#" class="logo" aria-label="{{ site.company.logo_aria }}">
+      <span class="logo__mark">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M6 14 24 4l18 10v20L24 44 6 34z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="logo__txt">
+        <strong>{{ site.company.name }}</strong>
+        <em>{{ site.company.tagline }}</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <ul class="nav__list">
+        {%- for item in site.nav.items %}
+        {%- if item.children %}
+        <li class="has-drop">
+          <a href="{{ item.url }}">{{ item.label }} <svg class="ico ico--xs"><use href="#chevron"></use></svg></a>
+          <ul class="drop">
+            {%- for child in item.children %}
+            <li><a href="{{ child.url }}">{{ child.label }}</a></li>
+            {%- endfor %}
+          </ul>
+        </li>
+        {%- else %}
+        <li><a href="{{ item.url }}"{% if item.active %} class="is-active"{% endif %}>{{ item.label }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <a href="#quote" class="btn btn--gold btn--sm header__cta">{{ site.nav.cta_label }}</a>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="{{ site.hero.image | asset }}" alt="" aria-hidden="true">
+    <span class="hero__overlay"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content reveal">
+      <p class="hero__eyebrow">{{ site.hero.eyebrow }}</p>
+      <h1 class="hero__title">{{ site.hero.title_line_1 }} <br class="br-lg">{{ site.hero.title_line_2 }} <br class="br-lg">{{ site.hero.title_line_3 }}</h1>
+      <p class="hero__text">{{ site.hero.text }}</p>
+      <div class="hero__actions">
+        <a href="{{ site.hero.cta_primary.url }}" class="btn btn--gold">{{ site.hero.cta_primary.label }}</a>
+        <a href="{{ site.hero.cta_secondary.url }}" class="btn btn--ghost">{{ site.hero.cta_secondary.label }}</a>
+      </div>
+      <ul class="hero__badges">
+        {%- for badge in site.hero.badges %}
+        <li><svg class="ico"><use href="#{{ badge.icon }}"></use></svg> {{ badge.label }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+
+    <aside class="delivery reveal" data-delay="150">
+      <div class="delivery__head">
+        <h2>{{ site.delivery.title }}</h2>
+        <p>{{ site.delivery.subtitle }}</p>
+      </div>
+      <ul class="delivery__list">
+        {%- for opt in site.delivery.options %}
+        <li class="delivery__item{% if opt.active %} is-active{% endif %}" data-freight="{{ opt.key }}">
+          <span class="delivery__ico"><svg class="ico"><use href="#{{ opt.icon }}"></use></svg></span>
+          <span class="delivery__body">
+            <strong>{{ opt.title }}</strong>
+            <em>{{ opt.note }}</em>
+          </span>
+          <span class="delivery__eta">{{ opt.eta }}</span>
+        </li>
+        {%- endfor %}
+      </ul>
+      <a href="#how" class="delivery__more">{{ site.delivery.more_label }}</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="container stats__inner">
+    {%- for stat in site.stats %}
+    <div class="stat reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
+      <svg class="ico ico--lg"><use href="#{{ stat.icon }}"></use></svg>
+      <div>
+        {%- if stat.animated %}
+        <strong class="counter" data-target="{{ stat.value }}" data-suffix="{{ stat.suffix }}">0</strong>
+        {%- else %}
+        <strong>{{ stat.value }}</strong>
+        {%- endif %}
+        <span>{{ stat.label }}</span>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section categories" id="categories">
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title">{{ site.categories.title }}</h2>
+    </header>
+
+    <div class="cat-grid">
+      {%- for cat in site.categories.items %}
+      <article class="cat reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
+        <div class="cat__media"><img src="{{ cat.image | asset }}" alt="{{ cat.alt }}"></div>
+        <div class="cat__body">
+          <h3>{{ cat.title }}</h3>
+          <p>{{ cat.text }}</p>
+          <a href="{{ cat.url }}" class="btn btn--outline btn--xs">{{ site.categories.cta_label }}</a>
+        </div>
+      </article>
+      {%- endfor %}
+
+      <aside class="cat-help reveal" data-delay="{{ site.categories.items.length * 80 }}">
+        <h3>{{ site.categories.help.title }}</h3>
+        <div class="cat-help__ico">
+          <svg class="ico"><use href="#search-doc"></use></svg>
+        </div>
+        <p>{{ site.categories.help.text }}</p>
+        <a href="{{ site.categories.help.cta_url }}" class="btn btn--navy btn--xs">{{ site.categories.help.cta_label }}</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section section--tint how" id="how">
+  <div class="container">
+    <header class="sec-head sec-head--center reveal">
+      <h2 class="sec-title">{{ site.how.title }}</h2>
+    </header>
+
+    <ol class="steps">
+      {%- for step in site.how.steps %}
+      {%- if not loop.first %}
+      <li class="step__arrow" aria-hidden="true"><svg class="ico"><use href="#arrow-right"></use></svg></li>
+      {%- endif %}
+      <li class="step reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
+        <span class="step__ico"><svg class="ico"><use href="#{{ step.icon }}"></use></svg></span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="section quote" id="quote">
+  <div class="container quote__grid">
+
+    <!-- FORM -->
+    <div class="qform reveal">
+      <h2 class="qform__title">{{ site.quote.title }}</h2>
+      <p class="qform__sub">{{ site.quote.subtitle }}</p>
+
+      <form class="qform__form" id="quoteForm" novalidate>
+        <div class="qform__cols">
+
+          <!-- col 1 -->
+          <fieldset class="qcol">
+            <legend>Contact Information</legend>
+            <label class="field">
+              <span>Company Name <i>*</i></span>
+              <input type="text" name="company" required>
+            </label>
+            <label class="field">
+              <span>Contact Person <i>*</i></span>
+              <input type="text" name="person" required>
+            </label>
+            <label class="field">
+              <span>Email <i>*</i></span>
+              <input type="email" name="email" required>
+            </label>
+            <label class="field">
+              <span>Phone / WhatsApp <i>*</i></span>
+              <input type="tel" name="phone" required>
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>Country <i>*</i></span>
+                <select name="country" required>
+                  {%- for c in site.quote.countries %}<option>{{ c }}</option>{% endfor %}
+                </select>
+              </label>
+              <label class="field">
+                <span>City / Port <i>*</i></span>
+                <select name="city" required>
+                  {%- for c in site.quote.cities %}<option>{{ c }}</option>{% endfor %}
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Additional Notes</span>
+              <textarea name="notes" rows="4" placeholder="Any specific requirements, delivery instructions, etc."></textarea>
+            </label>
+          </fieldset>
+
+          <!-- col 2 -->
+          <fieldset class="qcol">
+            <legend>Product Information</legend>
+            <label class="field">
+              <span>Product Category <i>*</i></span>
+              <select name="category" required>
+                <option value="">Select Category</option>
+                {%- for c in site.quote.product_categories %}<option>{{ c }}</option>{% endfor %}
+              </select>
+            </label>
+            <label class="field">
+              <span>Product / Part Name <i>*</i></span>
+              <input type="text" name="product" placeholder="e.g. 15W-40 Engine Oil, Toyota Bumper" required>
+            </label>
+            <label class="field">
+              <span>OEM / Part Number</span>
+              <input type="text" name="oem" placeholder="If known">
+            </label>
+            <label class="field">
+              <span>Brand Preference</span>
+              <select name="brand">{% for b in site.quote.brand_preferences %}<option>{{ b }}</option>{% endfor %}</select>
+            </label>
+            <label class="field">
+              <span>Packaging Type</span>
+              <select name="packaging"><option value="">Select Packaging</option>{% for p in site.quote.packaging_types %}<option>{{ p }}</option>{% endfor %}</select>
+            </label>
+            <label class="field">
+              <span>Quantity <i>*</i></span>
+              <input type="text" name="qty" placeholder="e.g. 100 Drums / 500 Liters / 50 Units" required>
+            </label>
+          </fieldset>
+
+          <!-- col 3 -->
+          <fieldset class="qcol">
+            <legend>Delivery &amp; Shipping</legend>
+            <label class="field">
+              <span>Destination Country <i>*</i></span>
+              <select name="dest_country" required>
+                {%- for c in site.quote.countries %}<option>{{ c }}</option>{% endfor %}
+              </select>
+            </label>
+            <label class="field">
+              <span>Delivery Location / Port <i>*</i></span>
+              <select name="dest_port" required>
+                {%- for p in site.quote.destination_ports %}<option>{{ p }}</option>{% endfor %}
+              </select>
+            </label>
+
+            <div class="field">
+              <span class="field__label">Shipping Method <i>*</i></span>
+              <div class="ship">
+                {%- for opt in site.delivery.options %}
+                <label class="ship__opt">
+                  <input type="radio" name="shipping" value="{{ opt.key }}"{% if opt.active %} checked{% endif %}>
+                  <span><svg class="ico"><use href="#{{ opt.icon }}"></use></svg><em>{{ opt.title }}</em></span>
+                </label>
+                {%- endfor %}
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Preferred Delivery Date</span>
+              <input type="date" name="date">
+            </label>
+            <label class="field">
+              <span>Incoterm Preference <i class="hint" title="EXW, FOB, CIF, DDP...">?</i></span>
+              <select name="incoterm">
+                <option value="">Select Incoterm</option>
+                {%- for i in site.quote.incoterms %}<option>{{ i }}</option>{% endfor %}
+              </select>
+            </label>
+            <div class="field">
+              <span class="field__label">Upload Your List (Excel, PDF, Images)</span>
+              <div class="upload" id="upload">
+                <input type="file" id="fileInput" name="files" multiple accept=".xls,.xlsx,.csv,.pdf,.png,.jpg,.jpeg">
+                <span class="upload__btn">Choose File</span>
+                <span class="upload__name" id="fileName">No file chosen</span>
+              </div>
+              <small class="field__note">{{ site.quote.max_upload_note }}</small>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="btn btn--gold btn--block">{{ site.quote.submit_label }}</button>
+        <p class="qform__ok" id="formOk" hidden>{{ site.quote.success_message }}</p>
+      </form>
+    </div>
+
+    <!-- EXAMPLE QUOTE -->
+    <aside class="example reveal" data-delay="120">
+      <h3 class="example__title">{{ site.example.title }}</h3>
+      <p class="example__route">{{ site.example.route }}</p>
+
+      <table class="example__table">
+        <thead>
+          <tr><th>{{ site.example.col_description }}</th><th>{{ site.example.col_amount }}</th></tr>
+        </thead>
+        <tbody>
+          {%- for row in site.example.rows %}
+          <tr{% if row.style %} class="{{ row.style }}"{% endif %}><td>{{ row.label }}</td><td>{{ row.amount }}</td></tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+
+      <p class="example__note">{{ site.example.note }}</p>
+      <a href="{{ site.example.cta_url }}" class="btn btn--navy btn--block btn--sm">{{ site.example.cta_label }}</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ BRANDS ============ -->
+<section class="brands" id="brands">
+  <div class="container">
+    <h2 class="brands__title reveal">{{ site.brands.title }}</h2>
+  </div>
+  <div class="brands__wrap">
+    <button class="brands__nav brands__nav--prev" type="button" aria-label="Previous brands">
+      <svg class="ico"><use href="#chevron-left"></use></svg>
+    </button>
+    <div class="brands__viewport" id="brandsViewport">
+      <ul class="brands__track" id="brandsTrack">
+        {%- for brand in site.brands.items %}
+        <li><span class="brand brand--{{ brand.shape }}"><img src="{{ brand.logo | asset }}" alt="{{ brand.name }}" loading="lazy"></span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    <button class="brands__nav brands__nav--next" type="button" aria-label="Next brands">
+      <svg class="ico"><use href="#chevron-right"></use></svg>
+    </button>
+  </div>
+</section>
+
+<!-- hidden anchors used by the nav -->
+<span id="about" class="anchor"></span>
+<span id="industries" class="anchor"></span>
+<span id="destinations" class="anchor"></span>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="contact">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="#" class="logo logo--light">
+        <span class="logo__mark">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M6 14 24 4l18 10v20L24 44 6 34z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="logo__txt"><strong>{{ site.company.name }}</strong><em>{{ site.company.tagline }}</em></span>
+      </a>
+      <p>{{ site.footer.about }}</p>
+      <ul class="socials">
+        {%- for social in site.footer.socials %}
+        <li><a href="{{ social.url }}" aria-label="{{ social.label }}"><svg class="ico"><use href="#{{ social.icon }}"></use></svg></a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+
+    {%- for col in site.footer.columns %}
+    <nav class="footer__col">
+      <h3>{{ col.title }}</h3>
+      <ul>
+        {%- for link in col.links %}
+        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    {%- endfor %}
+
+    <div class="footer__col footer__contact">
+      <h3>{{ site.footer.contact_title }}</h3>
+      <ul>
+        <li><svg class="ico"><use href="#pin"></use></svg> {{ site.company.address }}</li>
+        <li><svg class="ico"><use href="#phone"></use></svg> <a href="{{ site.company.phone | telLink }}">{{ site.company.phone }}</a></li>
+        <li><svg class="ico"><use href="#mail"></use></svg> <a href="mailto:{{ site.company.email }}">{{ site.company.email }}</a></li>
+        <li><svg class="ico"><use href="#clock"></use></svg> {{ site.company.hours }}</li>
+      </ul>
+      <a href="{{ site.company.whatsapp_url }}" class="btn btn--wa btn--sm btn--block"><svg class="ico"><use href="#whatsapp"></use></svg> {{ site.company.whatsapp_label }}</a>
+    </div>
+  </div>
+
+  <div class="footer__bar">
+    <div class="container footer__bar-inner">
+      <p>{{ site.footer.copyright }}</p>
+      <ul>{% for l in site.footer.legal %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="to-top" id="toTop" aria-label="Back to top"><svg class="ico"><use href="#arrow-up"></use></svg></a>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

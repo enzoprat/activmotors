@@ -1,0 +1,293 @@
+backend:
+  name: github
+  repo: enzoprat/uaesourcing
+  branch: main
+  # Origin of the OAuth worker only — no trailing slash, no path.
+  base_url: https://uaesourcing-auth.YOUR-SUBDOMAIN.workers.dev
+
+# Local editing: run `npm run cms` and `npm start` in two terminals, then open
+# http://localhost:4789/admin/ — no GitHub login needed. Port 8082 because 8081
+# (decap-server's default) is often already taken.
+local_backend:
+  url: http://localhost:8082/api/v1
+
+media_folder: src/assets/img/uploads
+public_folder: /assets/img/uploads
+
+publish_mode: simple
+locale: en
+
+collections:
+  - name: content
+    label: Website content
+    files:
+      - name: general
+        label: General & contact details
+        file: src/_data/site.json
+        description: Company name, phone, email, address and page title.
+        fields:
+          - name: meta
+            label: Search engine (SEO)
+            widget: object
+            collapsed: true
+            fields:
+              - { name: lang, label: Language code, widget: hidden, default: en }
+              - { name: title, label: Browser tab title, widget: string }
+              - { name: description, label: Google description, widget: text }
+          - name: company
+            label: Company details
+            widget: object
+            fields:
+              - { name: name, label: Company name, widget: string }
+              - { name: tagline, label: Tagline (under the name), widget: string }
+              - { name: logo_aria, label: Logo description (for screen readers), widget: string }
+              - { name: phone, label: Phone number, widget: string, hint: "Spaces are fine — the click-to-call link is built automatically." }
+              - { name: email, label: Email address, widget: string }
+              - { name: address, label: Office address, widget: text }
+              - { name: hours, label: Opening hours, widget: string }
+              - { name: whatsapp_url, label: WhatsApp link, widget: string, required: false }
+              - { name: whatsapp_label, label: WhatsApp button text, widget: string }
+          - name: topbar
+            label: Top bar
+            widget: object
+            collapsed: true
+            fields:
+              - name: badges
+                label: Small badges (top left)
+                widget: list
+                fields:
+                  - { name: icon, label: Icon, widget: select, options: [pin, check-badge, shield, tag, clock, doc, globe, truck] }
+                  - { name: label, label: Text, widget: string }
+              - name: languages
+                label: Language menu
+                widget: list
+                collapsed: true
+                fields:
+                  - { name: label, label: Language name, widget: string }
+                  - { name: url, label: Link, widget: string }
+                  - { name: active, label: Currently selected, widget: boolean, default: false }
+          - name: nav
+            label: Main menu
+            widget: object
+            collapsed: true
+            fields:
+              - { name: cta_label, label: Button text (top right), widget: string }
+              - name: items
+                label: Menu items
+                widget: list
+                collapsed: true
+                label_singular: menu item
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: url, label: Link, widget: string }
+                  - { name: active, label: Highlighted, widget: boolean, default: false, required: false }
+                  - name: children
+                    label: Dropdown items
+                    widget: list
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { name: label, label: Text, widget: string }
+                      - { name: url, label: Link, widget: string }
+          - name: hero
+            label: Hero (top of page)
+            widget: object
+            fields:
+              - { name: image, label: Background image, widget: image }
+              - { name: eyebrow, label: Small text above the title, widget: string }
+              - { name: title_line_1, label: Title — line 1, widget: string }
+              - { name: title_line_2, label: Title — line 2, widget: string }
+              - { name: title_line_3, label: Title — line 3, widget: string }
+              - { name: text, label: Paragraph, widget: text }
+              - name: cta_primary
+                label: Main button
+                widget: object
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: url, label: Link, widget: string }
+              - name: cta_secondary
+                label: Second button
+                widget: object
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: url, label: Link, widget: string }
+              - name: badges
+                label: Badges under the buttons
+                widget: list
+                collapsed: true
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: icon, label: Icon, widget: select, options: [shield, tag, clock, doc, check-badge, globe, gear] }
+                  - { name: label, label: Text, widget: string }
+          - name: delivery
+            label: Delivery options card
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Card title, widget: string }
+              - { name: subtitle, label: Card subtitle, widget: string }
+              - { name: more_label, label: Link text at the bottom, widget: string }
+              - name: options
+                label: Shipping methods
+                widget: list
+                summary: "{{fields.title}} — {{fields.eta}}"
+                hint: These also fill the "Shipping Method" choices in the quote form.
+                fields:
+                  - { name: key, label: Internal code, widget: select, options: [air, sea, road] }
+                  - { name: icon, label: Icon, widget: select, options: [plane, ship, truck] }
+                  - { name: title, label: Name, widget: string }
+                  - { name: note, label: Short note, widget: string }
+                  - { name: eta, label: Delivery time, widget: string }
+                  - { name: active, label: Pre-selected, widget: boolean, default: false }
+          - name: stats
+            label: Figures bar
+            widget: list
+            collapsed: true
+            summary: "{{fields.value}}{{fields.suffix}} {{fields.label}}"
+            fields:
+              - { name: icon, label: Icon, widget: select, options: [gear, users, globe, headset, check-circle, shield, truck] }
+              - { name: value, label: Number, widget: string, hint: "Digits only if the count-up animation is on (e.g. 10000)." }
+              - { name: suffix, label: Symbol after the number, widget: string, required: false, hint: "e.g. + or %" }
+              - { name: label, label: Caption, widget: string }
+              - { name: animated, label: Count up on scroll, widget: boolean, default: true }
+          - name: categories
+            label: Categories section
+            widget: object
+            fields:
+              - { name: title, label: Section title, widget: string }
+              - { name: cta_label, label: Button text on every card, widget: string }
+              - name: items
+                label: Category cards
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: title, label: Title, widget: string }
+                  - { name: text, label: Description, widget: text }
+                  - { name: image, label: Photo, widget: image }
+                  - { name: alt, label: Photo description (for screen readers), widget: string }
+                  - { name: url, label: Button link, widget: string }
+              - name: help
+                label: '"Can''t find it?" card'
+                widget: object
+                fields:
+                  - { name: title, label: Title, widget: string }
+                  - { name: text, label: Description, widget: text }
+                  - { name: cta_label, label: Button text, widget: string }
+                  - { name: cta_url, label: Button link, widget: string }
+          - name: how
+            label: How it works
+            widget: object
+            fields:
+              - { name: title, label: Section title, widget: string }
+              - name: steps
+                label: Steps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: icon, label: Icon, widget: select, options: [list, search, invoice, handshake, truck, plane, ship, doc, gear] }
+                  - { name: title, label: Title, widget: string }
+                  - { name: text, label: Description, widget: text }
+          - name: quote
+            label: Quote form
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Form title, widget: string }
+              - { name: subtitle, label: Form subtitle, widget: text }
+              - { name: submit_label, label: Submit button text, widget: string }
+              - { name: success_message, label: Thank-you message, widget: text }
+              - { name: countries, label: Countries, widget: list, field: { name: value, label: Country, widget: string } }
+              - { name: cities, label: Cities / ports, widget: list, field: { name: value, label: City, widget: string } }
+              - { name: product_categories, label: Product categories, widget: list, field: { name: value, label: Category, widget: string } }
+              - { name: brand_preferences, label: Brand preferences, widget: list, field: { name: value, label: Option, widget: string } }
+              - { name: packaging_types, label: Packaging types, widget: list, field: { name: value, label: Type, widget: string } }
+              - { name: destination_ports, label: Destination ports, widget: list, field: { name: value, label: Port, widget: string } }
+              - { name: incoterms, label: Incoterms, widget: list, field: { name: value, label: Incoterm, widget: string } }
+              - { name: max_upload_note, label: File size note, widget: string }
+          - name: example
+            label: Example quotation table
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: route, label: Route line, widget: string }
+              - { name: col_description, label: Column 1 heading, widget: string }
+              - { name: col_amount, label: Column 2 heading, widget: string }
+              - name: rows
+                label: Table rows
+                widget: list
+                summary: "{{fields.label}} — {{fields.amount}}"
+                fields:
+                  - { name: label, label: Description, widget: string }
+                  - { name: amount, label: Amount, widget: string }
+                  - name: style
+                    label: Row style
+                    widget: select
+                    required: false
+                    default: ""
+                    options:
+                      - { label: Normal, value: "" }
+                      - { label: Subtotal, value: is-sub }
+                      - { label: Total (gold), value: is-total }
+                      - { label: Unit price, value: is-unit }
+              - { name: note, label: Note under the table, widget: text }
+              - { name: cta_label, label: Button text, widget: string }
+              - { name: cta_url, label: Button link, widget: string }
+          - name: brands
+            label: Brand logos
+            widget: object
+            fields:
+              - { name: title, label: Section title, widget: string }
+              - name: items
+                label: Logos
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { name: name, label: Brand name, widget: string }
+                  - { name: logo, label: Logo file, widget: image }
+                  - name: shape
+                    label: Logo shape
+                    widget: select
+                    hint: "Square/round emblem, or a wide wordmark. This controls the display size."
+                    options:
+                      - { label: Square emblem, value: mark }
+                      - { label: Wide wordmark, value: word }
+          - name: footer
+            label: Footer
+            widget: object
+            collapsed: true
+            fields:
+              - { name: about, label: About paragraph, widget: text }
+              - name: socials
+                label: Social links
+                widget: list
+                collapsed: true
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: icon, label: Network, widget: select, options: [facebook, linkedin, instagram, whatsapp, youtube] }
+                  - { name: label, label: Name, widget: string }
+                  - { name: url, label: Link, widget: string }
+              - name: columns
+                label: Link columns
+                widget: list
+                collapsed: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: title, label: Column heading, widget: string }
+                  - name: links
+                    label: Links
+                    widget: list
+                    collapsed: true
+                    fields:
+                      - { name: label, label: Text, widget: string }
+                      - { name: url, label: Link, widget: string }
+              - { name: contact_title, label: Contact column heading, widget: string }
+              - { name: copyright, label: Copyright line, widget: string }
+              - name: legal
+                label: Legal links
+                widget: list
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: url, label: Link, widget: string }
