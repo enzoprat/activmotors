@@ -24,41 +24,43 @@ Then open http://localhost:4789/admin/.
 
 ## Going live
 
-The site is a static build (`npm run build` → `_site/`). Two things must be set
-up once, in this order.
+The site is already deployed: pushing to `main` runs
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds
+with Eleventy and publishes to GitHub Pages at
+https://enzoprat.github.io/uaesourcing/.
 
-### 1. GitHub OAuth App
+What is **not** set up yet is the login for `/admin` on the live site. GitHub
+Pages cannot run server code, so the OAuth exchange needs a small worker
+elsewhere. Three steps, once.
 
-Needed so the client can log into `/admin` on the live site.
-
-1. https://github.com/settings/developers → **New OAuth App**
-   (a classic OAuth App — *not* a GitHub App, they are not interchangeable).
-2. Homepage URL: the live site URL.
-3. **Authorization callback URL**: `https://<worker-url>/callback`
-   — the worker from step 2, not the site.
-4. Keep the Client ID and generate a Client Secret.
-
-### 2. OAuth worker
+### 1. OAuth worker
 
 Deploy [`sveltia/sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth)
-to Cloudflare Workers (one click from its README). It speaks the same protocol
-Decap expects. Set these variables on the worker:
+to Cloudflare Workers (one click from its README). Despite the name it
+implements the same handshake Decap expects, and its router accepts Decap's
+`/auth` and `/callback` paths. Note the worker URL, then come back for the
+variables in step 3.
+
+### 2. GitHub OAuth App
+
+1. https://github.com/settings/developers → **New OAuth App**.
+   It must be a classic OAuth App — a GitHub App will not work here.
+2. Homepage URL: `https://enzoprat.github.io/uaesourcing/`
+3. **Authorization callback URL**: `https://<worker-url>/callback`
+   — the worker from step 1, *not* the site.
+4. Keep the Client ID and generate a Client Secret.
+
+### 3. Worker variables
 
 | Variable | Value |
 | --- | --- |
-| `GITHUB_CLIENT_ID` | from step 1 |
-| `GITHUB_CLIENT_SECRET` | from step 1 — tick *Encrypt* |
-| `ALLOWED_DOMAINS` | `uaesourcing.pages.dev, *.uaesourcing.pages.dev` |
+| `GITHUB_CLIENT_ID` | from step 2 |
+| `GITHUB_CLIENT_SECRET` | from step 2 — tick *Encrypt* |
+| `ALLOWED_DOMAINS` | `enzoprat.github.io` |
 
-`ALLOWED_DOMAINS` takes bare hostnames, comma-separated, no `https://`.
-Add the custom domain here too once there is one.
-
-### 3. Cloudflare Pages
-
-Connect the repo with:
-
-- Build command: `npm run build`
-- Output directory: `_site`
+`ALLOWED_DOMAINS` takes bare hostnames, comma-separated, with no `https://`
+(a scheme here gives a blank login popup). Add the custom domain when there
+is one.
 
 ### 4. Point the CMS at the worker
 
@@ -75,8 +77,8 @@ access. She needs a free GitHub account; after that, logging in is one click.
 ## How editing works
 
 The client opens `/admin`, changes a field, clicks *Publish*. That writes a
-commit to `main`, Cloudflare rebuilds, and the change is live in about a minute.
-Every edit is a commit, so anything can be rolled back with `git revert`.
+commit to `main`, the workflow rebuilds, and the change is live in about a
+minute. Every edit is a commit, so anything can be rolled back with `git revert`.
 
 ## Notes
 
