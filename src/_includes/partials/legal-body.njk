@@ -1,0 +1,31 @@
+{%- set d = legal.privacy[locale] -%}
+
+<nav class="crumbs" aria-label="{{ t.nav.breadcrumb }}">
+  <div class="container">
+    <ol>
+      <li><a href="{{ homeUrl | url }}">{{ t.nav.home }}</a></li>
+      <li aria-current="page">{{ d.nav }}</li>
+    </ol>
+  </div>
+</nav>
+
+<section class="page-hero page-hero--slim">
+  <div class="container">
+    <h1 class="page-hero__title">{{ d.h1 }}</h1>
+    <p class="page-hero__lead">{{ d.lead }}</p>
+    <p class="page-hero__meta">{{ d.updated_label }} {{ legal.privacy.updated | localDate(locale) }}</p>
+  </div>
+</section>
+
+<article class="section prose-wrap">
+  <div class="container prose">
+    {%- for s in d.sections %}
+    <section class="prose__block reveal">
+      <h2>{{ s.title }}</h2>
+      {%- for p in s.body %}
+      <p>{{ p }}</p>
+      {%- endfor %}
+    </section>
+    {%- endfor %}
+  </div>
+</article>

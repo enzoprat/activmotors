@@ -40,4 +40,20 @@ eleventyExcludeFromCollections: true
     <priority>0.8</priority>
   </url>
 {%- endfor %}
+  <url>
+    <loc>{{ "/en/privacy-policy/" | absUrl }}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ '/en/privacy-policy/' | absUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="{{ '/fr/politique-de-confidentialite/' | absUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ '/en/privacy-policy/' | absUrl }}"/>
+    <lastmod>{{ legal.privacy.updated }}</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>{{ "/fr/politique-de-confidentialite/" | absUrl }}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ '/en/privacy-policy/' | absUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="{{ '/fr/politique-de-confidentialite/' | absUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ '/en/privacy-policy/' | absUrl }}"/>
+    <lastmod>{{ legal.privacy.updated }}</lastmod>
+    <priority>0.2</priority>
+  </url>
 </urlset>

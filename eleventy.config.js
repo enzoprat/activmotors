@@ -61,6 +61,13 @@ export default function (eleventyConfig) {
     });
   });
 
+  // A raw ISO date on a legal page reads as unfinished.
+  eleventyConfig.addFilter("localDate", (iso, locale) =>
+    new Date(iso + "T00:00:00Z").toLocaleDateString(locale === "fr" ? "fr-FR" : "en-GB", {
+      day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+    })
+  );
+
   eleventyConfig.addGlobalData("origin", SITE_ORIGIN);
   eleventyConfig.addGlobalData("buildDate", () => new Date().toISOString().slice(0, 10));
 

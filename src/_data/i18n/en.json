@@ -247,66 +247,6 @@
     "fab_label": "Chat with us on WhatsApp",
     "fab_greeting": "Hello, I would like information about sourcing from the UAE."
   },
-  "example": {
-    "title": "Example Quote (Road Freight)",
-    "route": "Delivery: Dubai, UAE to Kuwait City",
-    "col_description": "Description",
-    "col_amount": "Amount (AED)",
-    "note": "Note: Prices are indicative and may vary based on market conditions, quantity and final specifications.",
-    "cta_label": "Request Your Actual Quote",
-    "rows": [
-      {
-        "label": "Product Cost (15W-40, 20BL Drum)",
-        "amount": "1,200.00",
-        "style": ""
-      },
-      {
-        "label": "UAE Handling & Documentation",
-        "amount": "20.00",
-        "style": ""
-      },
-      {
-        "label": "Road Freight (FTL)",
-        "amount": "8,000.00",
-        "style": ""
-      },
-      {
-        "label": "Insurance",
-        "amount": "150.00",
-        "style": ""
-      },
-      {
-        "label": "Kuwait Import Clearance (Est.)",
-        "amount": "120.00",
-        "style": ""
-      },
-      {
-        "label": "Our Service Fee",
-        "amount": "180.00",
-        "style": ""
-      },
-      {
-        "label": "Total Cost (before margin)",
-        "amount": "9,670.00",
-        "style": "is-sub"
-      },
-      {
-        "label": "Our Margin",
-        "amount": "930.00",
-        "style": ""
-      },
-      {
-        "label": "Total Price to You (AED)",
-        "amount": "10,600.00",
-        "style": "is-total"
-      },
-      {
-        "label": "Price per Liter (Approx.)",
-        "amount": "6.37 AED",
-        "style": "is-unit"
-      }
-    ]
-  },
   "brands": {
     "title": "We Work With Trusted Brands"
   },

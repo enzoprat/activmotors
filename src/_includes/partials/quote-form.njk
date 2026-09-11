@@ -116,19 +116,5 @@
       </form>
     </div>
 
-    <aside class="example reveal" data-delay="120">
-      <h3 class="example__title">{{ t.example.title }}</h3>
-      <p class="example__route">{{ t.example.route }}</p>
-      <table class="example__table">
-        <thead><tr><th>{{ t.example.col_description }}</th><th>{{ t.example.col_amount }}</th></tr></thead>
-        <tbody>
-          {%- for row in t.example.rows %}
-          <tr{% if row.style %} class="{{ row.style }}"{% endif %}><td>{{ row.label }}</td><td>{{ row.amount }}</td></tr>
-          {%- endfor %}
-        </tbody>
-      </table>
-      <p class="example__note">{{ t.example.note }}</p>
-      <a href="#quoteForm" class="btn btn--navy btn--block btn--sm">{{ t.example.cta_label }}</a>
-    </aside>
   </div>
 </section>

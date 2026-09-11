@@ -247,66 +247,6 @@
     "fab_label": "Discuter avec nous sur WhatsApp",
     "fab_greeting": "Bonjour, je souhaite des informations sur le sourcing depuis les Émirats."
   },
-  "example": {
-    "title": "Exemple de devis (fret routier)",
-    "route": "Livraison : Dubaï, Émirats arabes unis vers Koweït",
-    "col_description": "Désignation",
-    "col_amount": "Montant (AED)",
-    "note": "Note : ces prix sont indicatifs et peuvent varier selon le marché, les quantités et les spécifications finales.",
-    "cta_label": "Demander mon devis réel",
-    "rows": [
-      {
-        "label": "Coût produit (15W-40, fût 20 BL)",
-        "amount": "1 200,00",
-        "style": ""
-      },
-      {
-        "label": "Manutention et documents (Émirats)",
-        "amount": "20,00",
-        "style": ""
-      },
-      {
-        "label": "Fret routier (camion complet)",
-        "amount": "8 000,00",
-        "style": ""
-      },
-      {
-        "label": "Assurance",
-        "amount": "150,00",
-        "style": ""
-      },
-      {
-        "label": "Dédouanement Koweït (est.)",
-        "amount": "120,00",
-        "style": ""
-      },
-      {
-        "label": "Nos frais de service",
-        "amount": "180,00",
-        "style": ""
-      },
-      {
-        "label": "Coût total (avant marge)",
-        "amount": "9 670,00",
-        "style": "is-sub"
-      },
-      {
-        "label": "Notre marge",
-        "amount": "930,00",
-        "style": ""
-      },
-      {
-        "label": "Prix total pour vous (AED)",
-        "amount": "10 600,00",
-        "style": "is-total"
-      },
-      {
-        "label": "Prix au litre (env.)",
-        "amount": "6,37 AED",
-        "style": "is-unit"
-      }
-    ]
-  },
   "brands": {
     "title": "Nous travaillons avec des marques de confiance"
   },

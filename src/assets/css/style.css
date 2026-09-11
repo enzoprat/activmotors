@@ -316,7 +316,8 @@ input,select,textarea{font:inherit;color:inherit}
 /* =========================================================
    QUOTE
    ========================================================= */
-.quote__grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.quote__grid{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center}
+.quote__grid .qform{width:100%;max-width:1000px}
 .qform{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
 .qform__title{font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-800)}
 .qform__sub{font-size:12.5px;color:var(--muted);margin-top:6px;margin-bottom:22px}
@@ -369,31 +370,6 @@ input,select,textarea{font:inherit;color:inherit}
   margin-top:14px;text-align:center;font-size:13px;font-weight:600;color:#1a7f4b;
   background:#e8f7ef;border:1px solid #b9e6cd;border-radius:7px;padding:11px;
 }
-
-/* example quote */
-.example{
-  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-  padding:22px;box-shadow:var(--shadow-sm);position:sticky;top:110px;
-}
-.example__title{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy-800)}
-.example__route{font-size:11.5px;color:var(--muted);margin-top:5px;margin-bottom:14px}
-.example__table{width:100%;border-collapse:collapse;font-size:12px}
-.example__table th{
-  text-align:left;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
-  padding:7px 0;border-bottom:1px solid var(--line);font-weight:700;
-}
-.example__table th:last-child,.example__table td:last-child{text-align:right}
-.example__table td{padding:7px 0;border-bottom:1px dashed #eceff4;color:#43556b}
-.example__table tr.is-sub td{font-weight:700;color:var(--navy-800);border-bottom:1px solid var(--line)}
-.example__table tr.is-total td{
-  background:var(--gold);color:#231603;font-weight:800;font-size:12.5px;
-  padding:10px 9px;border:0;
-}
-.example__table tr.is-total td:first-child{border-radius:5px 0 0 5px}
-.example__table tr.is-total td:last-child{border-radius:0 5px 5px 0}
-.example__table tr.is-unit td{color:var(--muted);font-size:11.5px;border-bottom:0}
-.example__note{font-size:10.5px;color:var(--muted);line-height:1.55;margin:12px 0 14px;
-  background:var(--bg-tint);border-left:3px solid var(--gold);padding:9px 11px;border-radius:0 5px 5px 0}
 
 /* =========================================================
    BRANDS
@@ -515,7 +491,6 @@ input,select,textarea{font:inherit;color:inherit}
   .nav__list>li>a{padding:10px 9px;font-size:11.5px}
   .cat-grid{grid-template-columns:repeat(3,1fr)}
   .cat-help{grid-column:span 3}
-  .quote__grid{grid-template-columns:1fr 320px}
 }
 
 @media (max-width:1024px){
@@ -545,9 +520,6 @@ input,select,textarea{font:inherit;color:inherit}
   .steps{flex-wrap:wrap;gap:22px}
   .step{flex:1 1 170px;max-width:none}
   .step__arrow{display:none}
-  .quote__grid{grid-template-columns:1fr}
-  .example{position:static;max-width:520px}
-  .qform__cols{grid-template-columns:repeat(2,1fr)}
   .footer__grid{grid-template-columns:repeat(2,1fr);gap:30px}
 }
 
@@ -573,11 +545,15 @@ input,select,textarea{font:inherit;color:inherit}
   .header__inner{min-height:64px;gap:10px}
   .header__cta{padding:10px 13px;font-size:10.5px;letter-spacing:.04em}
   .qform{padding:18px}
-  .qform__cols{grid-template-columns:1fr;gap:20px}
+  .qform__cols{grid-template-columns:repeat(2,1fr);gap:22px}
   .footer__grid{grid-template-columns:1fr}
   .footer__bar-inner{flex-direction:column;text-align:center;gap:10px}
   .fabs{right:14px;bottom:14px;gap:10px}
   .fab-wa{height:50px;padding:0 13px}
+}
+
+@media (max-width:560px){
+  .qform__cols{grid-template-columns:1fr;gap:18px}
 }
 
 @media (max-width:460px){
@@ -621,6 +597,16 @@ input,select,textarea{font:inherit;color:inherit}
   content:"";position:absolute;inset:0;
   background:radial-gradient(900px 340px at 88% 6%,rgba(245,166,35,.16),transparent 62%);
 }
+/* legal pages: no illustration, so the hero is a single centred column */
+.page-hero--slim{padding:44px 0 46px}
+.page-hero--slim .container{position:relative;max-width:900px}
+.page-hero--slim .page-hero__title{font-size:clamp(27px,3.4vw,38px)}
+.page-hero--slim .page-hero__lead{max-width:720px}
+.page-hero__meta{
+  margin-top:16px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold-light);font-weight:600;
+}
+
 .page-hero__inner{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
 .page-hero__title{
   font-family:"Barlow Condensed",Inter,system-ui,sans-serif;

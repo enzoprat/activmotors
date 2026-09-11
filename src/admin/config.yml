@@ -227,25 +227,6 @@ collections:
               - { name: f_date, label: "Field: delivery date", widget: string }
               - { name: f_incoterm, label: "Field: incoterm", widget: string }
               - { name: f_incoterm_ph, label: "Field: incoterm placeholder", widget: string }
-          - name: example
-            label: Example quotation
-            widget: object
-            collapsed: true
-            fields:
-              - { name: title, label: Heading, widget: string }
-              - { name: route, label: Route, widget: string }
-              - { name: col_description, label: "Column: description", widget: string }
-              - { name: col_amount, label: "Column: amount", widget: string }
-              - { name: note, label: Note under the table, widget: text }
-              - { name: cta_label, label: Button, widget: string }
-              - name: rows
-                label: Table rows
-                widget: list
-                summary: "{{fields.label}} — {{fields.amount}}"
-                fields:
-                  - { name: label, label: Description, widget: string }
-                  - { name: amount, label: Amount, widget: string }
-                  - { name: style, label: Emphasis, widget: select, required: false, options: ["", is-sub, is-total, is-unit] }
           - name: brands
             label: Brands section
             widget: object
@@ -352,3 +333,44 @@ collections:
                 label: Français
                 widget: object
                 fields: *category_fields
+
+  # ---------------------------------------------------------------
+  # Legal pages.
+  # ---------------------------------------------------------------
+  - name: legal
+    label: Legal pages
+    files:
+      - name: privacy
+        label: Privacy policy
+        file: src/_data/legal.json
+        description: >-
+          Have a lawyer check this before relying on it. Update the date
+          whenever you change the text.
+        fields:
+          - name: privacy
+            label: Privacy policy
+            widget: object
+            fields:
+              - { name: updated, label: Last updated, widget: string, hint: "Format YYYY-MM-DD." }
+              - name: en
+                label: English
+                widget: object
+                fields: &legal_fields
+                  - { name: slug, label: Web address, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and hyphens only.'] }
+                  - { name: nav, label: Link text, widget: string }
+                  - { name: meta_title, label: Browser tab title, widget: string, pattern: ['^.{1,60}$', 'Keep this to 60 characters or fewer.'] }
+                  - { name: meta_description, label: Google description, widget: text, pattern: ['^.{1,160}$', 'Keep this to 160 characters or fewer.'] }
+                  - { name: h1, label: Page heading, widget: string }
+                  - { name: lead, label: Introduction, widget: text }
+                  - { name: updated_label, label: "\"Last updated\" wording", widget: string }
+                  - name: sections
+                    label: Sections
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { name: title, label: Section heading, widget: string }
+                      - { name: body, label: Paragraphs, widget: list }
+              - name: fr
+                label: Français
+                widget: object
+                fields: *legal_fields
