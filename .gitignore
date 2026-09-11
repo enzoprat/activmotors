@@ -2,3 +2,6 @@
 node_modules/
 .claude/
 _site/
+
+# Generated image variants — rebuilt from src/assets/img on every build
+.cache/

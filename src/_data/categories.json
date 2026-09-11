@@ -2,7 +2,7 @@
   {
     "key": "automotive-parts",
     "icon": "gear",
-    "image": "/assets/img/cat-automotive.svg",
+    "image": "/assets/img/categories/automotive-parts.jpg",
     "en": {
       "slug": "automotive-parts-dubai",
       "preselect": "Automotive Parts",
@@ -173,7 +173,7 @@
   {
     "key": "aftermarket-body-parts",
     "icon": "tag",
-    "image": "/assets/img/cat-aftermarket.svg",
+    "image": "/assets/img/categories/aftermarket-body-parts.jpg",
     "en": {
       "slug": "aftermarket-body-parts-dubai",
       "preselect": "Aftermarket Parts",
@@ -328,7 +328,7 @@
   {
     "key": "lubricants-oils",
     "icon": "doc",
-    "image": "/assets/img/cat-lubricants.svg",
+    "image": "/assets/img/categories/lubricants-oils.jpg",
     "en": {
       "slug": "lubricants-oils-supplier-dubai",
       "preselect": "Lubricants & Oils",
@@ -483,7 +483,7 @@
   {
     "key": "vehicles",
     "icon": "truck",
-    "image": "/assets/img/cat-vehicles.svg",
+    "image": "/assets/img/categories/vehicles.jpg",
     "en": {
       "slug": "vehicle-sourcing-export-dubai",
       "preselect": "Vehicles",

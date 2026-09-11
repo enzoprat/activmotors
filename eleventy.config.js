@@ -3,6 +3,9 @@
  * the root on any real domain. Every internal link therefore goes through the
  * `url` filter, and PATH_PREFIX is set by the deploy workflow.
  */
+import Image from "@11ty/eleventy-img";
+import path from "node:path";
+
 const PATH_PREFIX = process.env.PATH_PREFIX || "/uaesourcing/";
 const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://enzoprat.github.io").replace(/\/$/, "");
 
@@ -33,6 +36,30 @@ export default function (eleventyConfig) {
     name: f.q,
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })));
+
+  /**
+   * Responsive <picture> for the client's photographs. They arrive at 1206px
+   * but are shown at roughly 280px in the home cards and 490px on a category
+   * page, so serving the original is most of the page weight for nothing.
+   * `sizes` must describe the real slot or the browser picks too large a file.
+   */
+  eleventyConfig.addAsyncShortcode("picture", async function (src, alt, sizes, opts = {}) {
+    const file = path.join("src", src.replace(/^\//, ""));
+    const metadata = await Image(file, {
+      widths: [320, 640, 960, 1206],
+      formats: ["avif", "webp", "jpeg"],
+      outputDir: "_site/assets/img/optimised/",
+      urlPath: PATH_PREFIX.replace(/\/$/, "") + "/assets/img/optimised/",
+      sharpJpegOptions: { quality: 78, progressive: true },
+    });
+    return Image.generateHTML(metadata, {
+      alt,
+      sizes,
+      loading: opts.eager ? "eager" : "lazy",
+      decoding: "async",
+      ...(opts.eager ? { fetchpriority: "high" } : {}),
+    });
+  });
 
   eleventyConfig.addGlobalData("origin", SITE_ORIGIN);
   eleventyConfig.addGlobalData("buildDate", () => new Date().toISOString().slice(0, 10));

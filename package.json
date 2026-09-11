@@ -16,6 +16,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^7.0.0",
     "decap-server": "^3.10.0"
   }
 }

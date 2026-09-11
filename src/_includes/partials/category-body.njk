@@ -19,7 +19,7 @@
       <a href="#quote" class="btn btn--gold">{{ d.cta }}</a>
     </div>
     <div class="page-hero__media reveal" data-delay="120">
-      <img src="{{ cat.image | url }}" alt="{{ d.alt }}" fetchpriority="high" decoding="async">
+      {% picture cat.image, d.alt, "(max-width:1024px) 92vw, 490px", { eager: true } %}
     </div>
   </div>
 </section>

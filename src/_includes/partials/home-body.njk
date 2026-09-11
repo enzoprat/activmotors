@@ -67,7 +67,7 @@
       {%- for c in categories %}
       {%- set d = c[locale] %}
       <article class="cat reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
-        <div class="cat__media"><img src="{{ c.image | url }}" alt="{{ d.alt }}" loading="lazy"></div>
+        <div class="cat__media">{% picture c.image, d.alt, "(max-width:720px) 92vw, (max-width:1024px) 44vw, 280px" %}</div>
         <div class="cat__body">
           <h3><a href="{{ ('/' + locale + '/' + d.slug + '/') | url }}">{{ d.nav }}</a></h3>
           <p>{{ d.card_text }}</p>
