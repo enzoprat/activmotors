@@ -1,5 +1,8 @@
 {
-  "locales": ["en", "fr"],
+  "locales": [
+    "en",
+    "fr"
+  ],
   "default_locale": "en",
   "company": {
     "name": "UAE SOURCING",
@@ -16,24 +19,81 @@
     "hours": "Mon – Sat: 9:00 AM – 6:00 PM"
   },
   "socials": [
-    { "icon": "facebook", "label": "Facebook", "url": "" },
-    { "icon": "linkedin", "label": "LinkedIn", "url": "" },
-    { "icon": "instagram", "label": "Instagram", "url": "" },
-    { "icon": "youtube", "label": "YouTube", "url": "" }
+    {
+      "icon": "facebook",
+      "label": "Facebook",
+      "url": ""
+    },
+    {
+      "icon": "linkedin",
+      "label": "LinkedIn",
+      "url": ""
+    },
+    {
+      "icon": "instagram",
+      "label": "Instagram",
+      "url": ""
+    },
+    {
+      "icon": "youtube",
+      "label": "YouTube",
+      "url": ""
+    }
   ],
   "brands": [
-    { "name": "Toyota", "logo": "/assets/img/brands/toyota.svg", "shape": "mark" },
-    { "name": "Nissan", "logo": "/assets/img/brands/nissan.svg", "shape": "mark" },
-    { "name": "Hyundai", "logo": "/assets/img/brands/hyundai.svg", "shape": "mark" },
-    { "name": "Mitsubishi", "logo": "/assets/img/brands/mitsubishi.svg", "shape": "mark" },
-    { "name": "Isuzu", "logo": "/assets/img/brands/isuzu.svg", "shape": "word" },
-    { "name": "Castrol", "logo": "/assets/img/brands/castrol.svg", "shape": "word" },
-    { "name": "Mobil", "logo": "/assets/img/brands/mobil.svg", "shape": "word" },
-    { "name": "Shell", "logo": "/assets/img/brands/shell.svg", "shape": "mark" },
-    { "name": "TotalEnergies", "logo": "/assets/img/brands/totalenergies.svg", "shape": "word" },
-    { "name": "Liqui Moly", "logo": "/assets/img/brands/liquimoly.svg", "shape": "mark" }
+    {
+      "name": "Toyota",
+      "logo": "/assets/img/brands/toyota.svg",
+      "shape": "mark"
+    },
+    {
+      "name": "Nissan",
+      "logo": "/assets/img/brands/nissan.svg",
+      "shape": "mark"
+    },
+    {
+      "name": "Hyundai",
+      "logo": "/assets/img/brands/hyundai.svg",
+      "shape": "mark"
+    },
+    {
+      "name": "Mitsubishi",
+      "logo": "/assets/img/brands/mitsubishi.svg",
+      "shape": "mark"
+    },
+    {
+      "name": "Isuzu",
+      "logo": "/assets/img/brands/isuzu.svg",
+      "shape": "word"
+    },
+    {
+      "name": "Castrol",
+      "logo": "/assets/img/brands/castrol.svg",
+      "shape": "word"
+    },
+    {
+      "name": "Mobil",
+      "logo": "/assets/img/brands/mobil.svg",
+      "shape": "word"
+    },
+    {
+      "name": "Shell",
+      "logo": "/assets/img/brands/shell.svg",
+      "shape": "mark"
+    },
+    {
+      "name": "TotalEnergies",
+      "logo": "/assets/img/brands/totalenergies.svg",
+      "shape": "word"
+    },
+    {
+      "name": "Liqui Moly",
+      "logo": "/assets/img/brands/liquimoly.svg",
+      "shape": "mark"
+    }
   ],
   "hero_image": "/assets/img/hero.svg",
   "og_image": "/assets/img/hero.svg",
-  "favicon": "/assets/img/favicon.svg"
+  "favicon": "/assets/img/favicon.svg",
+  "web3forms_key": ""
 }

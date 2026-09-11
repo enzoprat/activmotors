@@ -360,14 +360,6 @@ input,select,textarea{font:inherit;color:inherit}
 .ship__opt>span:hover{border-color:var(--gold-light);background:#fffdf7}
 .ship__opt input:checked+span{border-color:var(--gold);background:#fff8ea;color:var(--gold-dark);box-shadow:0 0 0 2px rgba(245,166,35,.18)}
 
-.upload{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.upload input[type=file]{position:absolute;left:0;top:0;opacity:0;width:.1px;height:.1px}
-.upload__btn{
-  padding:8px 14px;border:1px solid #d6dfea;border-radius:6px;background:var(--bg-tint);
-  font-size:12px;font-weight:600;cursor:pointer;transition:.2s;
-}
-.upload__btn:hover{border-color:var(--gold);background:#fff8ea;color:var(--gold-dark)}
-.upload__name{font-size:11.5px;color:var(--muted)}
 
 .qform__form>.btn--block{margin-top:22px;max-width:420px;margin-left:auto;margin-right:auto}
 .qform__ok{
@@ -692,6 +684,16 @@ input,select,textarea{font:inherit;color:inherit}
 .consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0 14px;cursor:pointer}
 .consent input{flex:none;width:16px;height:16px;margin-top:1px;accent-color:var(--gold-dark)}
 .consent span{font-size:12px;line-height:1.55;color:var(--muted)}
+
+/* honeypot — must be unreachable, not merely invisible */
+.botcheck{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.qform__files-note{
+  display:flex;align-items:flex-start;gap:8px;margin:18px 0 0;
+  background:var(--bg-tint);border:1px solid var(--line);border-radius:var(--radius);
+  padding:12px 14px;font-size:12px;line-height:1.6;color:var(--muted);
+}
+.qform__files-note .ico{color:var(--gold-dark);margin-top:2px}
 
 .qform__done{margin-top:14px}
 .qform__wa-note{font-size:12.5px;color:var(--muted);text-align:center;margin:12px 0 9px}

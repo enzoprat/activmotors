@@ -62,6 +62,11 @@ collections:
               - { name: name, label: Brand name, widget: string }
               - { name: logo, label: Logo, widget: image }
               - { name: shape, label: Logo shape, widget: select, options: [mark, word], hint: "mark = square emblem, word = wide wordmark." }
+          - name: web3forms_key
+            label: Form access key (Web3Forms)
+            widget: string
+            required: false
+            hint: "From your Web3Forms dashboard. Quote requests stop arriving if this is wrong."
           - { name: hero_image, label: Home page background image, widget: image }
           - { name: og_image, label: Share preview image, widget: image, hint: "Shown when a link to the site is posted on WhatsApp or LinkedIn." }
           - { name: favicon, label: Browser tab icon, widget: image }
@@ -175,7 +180,8 @@ collections:
               - { name: whatsapp_prompt, label: WhatsApp invitation, widget: text }
               - { name: whatsapp_cta, label: WhatsApp button, widget: string }
               - { name: f_consent, label: Consent checkbox text, widget: text }
-              - { name: max_upload_note, label: File size note, widget: string }
+              - { name: files_note, label: "Note: where to send files", widget: text }
+              - { name: email_subject, label: Subject of the e-mail you receive, widget: string }
               - { name: countries, label: Countries, widget: list }
               - { name: cities, label: Cities and ports, widget: list }
               - { name: destination_ports, label: Delivery locations, widget: list }
@@ -211,11 +217,6 @@ collections:
               - { name: f_date, label: "Field: delivery date", widget: string }
               - { name: f_incoterm, label: "Field: incoterm", widget: string }
               - { name: f_incoterm_ph, label: "Field: incoterm placeholder", widget: string }
-              - { name: f_upload, label: "Field: file upload", widget: string }
-              - { name: f_upload_btn, label: "Field: choose file button", widget: string }
-              - { name: f_upload_none, label: "Field: no file chosen", widget: string }
-              - { name: f_upload_toobig, label: "Field: file too large", widget: string, hint: "%s is replaced by the file name." }
-              - { name: f_upload_many, label: "Field: several files", widget: string, hint: "%n is replaced by the number of files." }
           - name: example
             label: Example quotation
             widget: object

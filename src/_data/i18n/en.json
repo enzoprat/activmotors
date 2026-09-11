@@ -25,7 +25,7 @@
     "title_line_3": "Delivered to Your Destination",
     "text": "We source, consolidate and export quality products from trusted suppliers in the UAE to Kuwait, GCC, Africa and international markets.",
     "cta_primary": "Request a Quote",
-    "cta_secondary": "Upload Requirement List",
+    "cta_secondary": "See How It Works",
     "badges": [
       {
         "icon": "shield",
@@ -186,11 +186,7 @@
     "f_date": "Preferred Delivery Date",
     "f_incoterm": "Incoterm Preference",
     "f_incoterm_ph": "Select Incoterm",
-    "f_upload": "Upload Your List (Excel, PDF, Images)",
-    "f_upload_btn": "Choose File",
-    "f_upload_none": "No file chosen",
     "f_consent": "I agree to be contacted about this request by e-mail, phone or WhatsApp.",
-    "max_upload_note": "Max file size: 10MB",
     "countries": [
       "Kuwait",
       "Saudi Arabia",
@@ -238,8 +234,14 @@
       "DAP",
       "DDP"
     ],
-    "f_upload_toobig": "\"%s\" exceeds 10MB",
-    "f_upload_many": "%n files selected"
+    "files_note": "Have a parts list, photos or specifications? Send them on WhatsApp or by e-mail once you have submitted this form — we will match them to your request.",
+    "email_subject": "New quote request from the website",
+    "wa_title": "Quote request — UAE Sourcing",
+    "wa_product": "Product",
+    "wa_qty": "Quantity",
+    "wa_dest": "Destination",
+    "wa_shipping": "Shipping",
+    "wa_company": "Company"
   },
   "example": {
     "title": "Example Quote (Road Freight)",

@@ -161,32 +161,7 @@
     });
   });
 
-  /* ---------- 7. File upload label ---------- */
-  const fileInput = $('#fileInput');
-  const fileName  = $('#fileName');
-  const uploadBtn = $('.upload__btn');
-
-  // Labels live in the markup so they are translated with the rest of the page.
-  const uploadTxt = (key, fallback) => (fileName && fileName.dataset[key]) || fallback;
-
-  if (uploadBtn) uploadBtn.addEventListener('click', () => fileInput.click());
-  if (fileInput) {
-    fileInput.addEventListener('change', () => {
-      const files = Array.from(fileInput.files || []);
-      if (!files.length) { fileName.textContent = uploadTxt('none', 'No file chosen'); return; }
-      const tooBig = files.find((f) => f.size > 10 * 1024 * 1024);
-      if (tooBig) {
-        fileName.textContent = uploadTxt('toobig', 'File too large').replace('%s', tooBig.name);
-        fileInput.value = '';
-        return;
-      }
-      fileName.textContent = files.length === 1
-        ? files[0].name
-        : uploadTxt('many', '%n files selected').replace('%n', files.length);
-    });
-  }
-
-  /* ---------- 8. Quote form ---------- */
+  /* ---------- 7. Quote form ---------- */
   const form     = $('#quoteForm');
   const formDone = $('#formDone');
   const formErr  = $('#formErr');
@@ -196,15 +171,26 @@
   // summary over WhatsApp in one tap. This is deliberately customer-initiated:
   // an automatic business-initiated message would need Meta's approved-template
   // flow, which is a separate piece of work.
-  const buildWhatsAppLink = (number, data) => {
+  const shippingLabel = (f) => {
+    const checked = $('input[name=shipping]:checked', f);
+    const label = checked && checked.closest('.ship__opt');
+    return label ? label.textContent.trim() : '';
+  };
+
+  const buildWhatsAppLink = (number, data, form) => {
+    // The sender reads this message before tapping send, so it is written in
+    // the language of the page they filled in.
+    let L = {};
+    try { L = JSON.parse(form.dataset.waLabels || '{}'); } catch (e) { L = {}; }
+    const row = (label, value) => (value ? `${label}: ${value}` : '');
     const lines = [
-      data.get('product') && `Product: ${data.get('product')}`,
-      data.get('qty') && `Quantity: ${data.get('qty')}`,
-      data.get('dest_country') && `Destination: ${data.get('dest_country')}`,
-      data.get('shipping') && `Shipping: ${data.get('shipping')}`,
-      data.get('company') && `Company: ${data.get('company')}`,
+      row(L.product  || 'Product',     data.get('product')),
+      row(L.qty      || 'Quantity',    data.get('qty')),
+      row(L.dest     || 'Destination', data.get('dest_country')),
+      row(L.shipping || 'Shipping',    shippingLabel(form)),
+      row(L.company  || 'Company',     data.get('company')),
     ].filter(Boolean);
-    const text = ['Quote request — UAE Sourcing', ''].concat(lines).join('\n');
+    const text = [L.title || 'Quote request', ''].concat(lines).join('\n');
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
   };
 
@@ -233,16 +219,22 @@
       }
 
       try {
-        const res = await fetch(form.dataset.endpoint, { method: 'POST', body: data });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        // Web3Forms answers 200 with {success:false} on a rejected submission,
+        // so the status code alone is not enough to call it a success.
+        const res  = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || body.success === false) throw new Error(body.message || 'HTTP ' + res.status);
 
-        if (waSend && form.dataset.wa) waSend.href = buildWhatsAppLink(form.dataset.wa, data);
+        if (waSend && form.dataset.wa) waSend.href = buildWhatsAppLink(form.dataset.wa, data, form);
         if (formDone) {
           formDone.hidden = false;
           formDone.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         }
         form.reset();
-        if (fileName) fileName.textContent = uploadTxt('none', 'No file chosen');
         fields.forEach((f) => f.classList.remove('is-touched'));
       } catch (err) {
         if (formErr) {
@@ -258,7 +250,7 @@
     });
   }
 
-  /* ---------- 9. Brands carousel (auto-scroll + arrows) ---------- */
+  /* ---------- 8. Brands carousel (auto-scroll + arrows) ---------- */
   const track    = $('#brandsTrack');
   const viewport = $('#brandsViewport');
 

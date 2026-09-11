@@ -6,9 +6,21 @@
       <p class="qform__sub">{{ t.quote.subtitle }}</p>
 
       <form class="qform__form" id="quoteForm" novalidate
-            data-endpoint="/api/quote"
+            action="https://api.web3forms.com/submit" method="POST"
             data-locale="{{ locale }}"
-            data-wa="{{ site.company.whatsapp_number }}">
+            data-wa="{{ site.company.whatsapp_number }}"
+            data-wa-labels='{{ {
+              "title": t.quote.wa_title, "product": t.quote.wa_product,
+              "qty": t.quote.wa_qty, "dest": t.quote.wa_dest,
+              "shipping": t.quote.wa_shipping, "company": t.quote.wa_company
+            } | jsonld | safe }}'>
+
+        <input type="hidden" name="access_key" value="{{ site.web3forms_key }}">
+        <input type="hidden" name="subject" value="{{ t.quote.email_subject }}">
+        <input type="hidden" name="from_name" value="{{ site.company.legal_name }}">
+        <input type="hidden" name="language" value="{{ t.label }}">
+        {#- Honeypot: bots fill it, people never see it. -#}
+        <label class="botcheck" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
         <div class="qform__cols">
 
           <fieldset class="qcol">
@@ -74,20 +86,10 @@
             <label class="field"><span>{{ t.quote.f_incoterm }} <i class="hint" title="EXW, FOB, CIF, DDP…">?</i></span>
               <select name="incoterm"><option value="">{{ t.quote.f_incoterm_ph }}</option>{% for i in t.quote.incoterms %}<option>{{ i }}</option>{% endfor %}</select>
             </label>
-            <div class="field">
-              <span class="field__label">{{ t.quote.f_upload }}</span>
-              <div class="upload" id="upload">
-                <input type="file" id="fileInput" name="files" multiple accept=".xls,.xlsx,.csv,.pdf,.png,.jpg,.jpeg">
-                <span class="upload__btn">{{ t.quote.f_upload_btn }}</span>
-                <span class="upload__name" id="fileName"
-                      data-none="{{ t.quote.f_upload_none }}"
-                      data-toobig="{{ t.quote.f_upload_toobig }}"
-                      data-many="{{ t.quote.f_upload_many }}">{{ t.quote.f_upload_none }}</span>
-              </div>
-              <small class="field__note">{{ t.quote.max_upload_note }}</small>
-            </div>
           </fieldset>
         </div>
+
+        <p class="qform__files-note"><svg class="ico"><use href="#doc"></use></svg> {{ t.quote.files_note }}</p>
 
         <label class="consent">
           <input type="checkbox" name="consent" required>

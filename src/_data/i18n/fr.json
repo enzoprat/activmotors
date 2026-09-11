@@ -25,7 +25,7 @@
     "title_line_3": "livrés à votre destination",
     "text": "Nous sourçons, regroupons et exportons des produits de qualité depuis des fournisseurs vérifiés aux Émirats arabes unis vers le Koweït, le Golfe, l'Afrique et l'international.",
     "cta_primary": "Demander un devis",
-    "cta_secondary": "Envoyer votre liste de besoins",
+    "cta_secondary": "Comment ça marche",
     "badges": [
       {
         "icon": "shield",
@@ -186,11 +186,7 @@
     "f_date": "Date de livraison souhaitée",
     "f_incoterm": "Incoterm souhaité",
     "f_incoterm_ph": "Choisir un incoterm",
-    "f_upload": "Joindre votre liste (Excel, PDF, images)",
-    "f_upload_btn": "Choisir un fichier",
-    "f_upload_none": "Aucun fichier sélectionné",
     "f_consent": "J'accepte d'être recontacté au sujet de cette demande par e-mail, téléphone ou WhatsApp.",
-    "max_upload_note": "Taille maximale : 10 Mo",
     "countries": [
       "Koweït",
       "Arabie saoudite",
@@ -238,8 +234,14 @@
       "DAP",
       "DDP"
     ],
-    "f_upload_toobig": "« %s » dépasse 10 Mo",
-    "f_upload_many": "%n fichiers sélectionnés"
+    "files_note": "Vous avez une liste de pièces, des photos ou des spécifications ? Envoyez-les sur WhatsApp ou par e-mail après avoir validé ce formulaire, nous les rattacherons à votre demande.",
+    "email_subject": "Nouvelle demande de devis depuis le site",
+    "wa_title": "Demande de devis — UAE Sourcing",
+    "wa_product": "Produit",
+    "wa_qty": "Quantité",
+    "wa_dest": "Destination",
+    "wa_shipping": "Expédition",
+    "wa_company": "Société"
   },
   "example": {
     "title": "Exemple de devis (fret routier)",
