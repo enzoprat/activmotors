@@ -96,11 +96,18 @@
           <span>{{ t.quote.f_consent }}</span>
         </label>
 
+        <label class="consent consent--wa">
+          <input type="checkbox" id="waAlso" checked>
+          <span><svg class="ico"><use href="#whatsapp"></use></svg> {{ t.quote.wa_also }}</span>
+        </label>
+
         <button type="submit" class="btn btn--gold btn--block" data-sending="{{ t.quote.sending_label }}">{{ t.quote.submit_label }}</button>
 
         <div class="qform__done" id="formDone" hidden>
           <p class="qform__ok">{{ t.quote.success_message }}</p>
-          <p class="qform__wa-note">{{ t.quote.whatsapp_prompt }}</p>
+          <p class="qform__wa-note" id="waNote"
+             data-prompt="{{ t.quote.whatsapp_prompt }}"
+             data-blocked="{{ t.quote.wa_blocked }}">{{ t.quote.whatsapp_prompt }}</p>
           <a href="#" class="btn btn--wa btn--block" id="waSend" rel="noopener">
             <svg class="ico"><use href="#whatsapp"></use></svg> {{ t.quote.whatsapp_cta }}
           </a>

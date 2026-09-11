@@ -45,7 +45,7 @@
         <li><svg class="ico"><use href="#mail"></use></svg> <a href="mailto:{{ site.company.email }}">{{ site.company.email }}</a></li>
         <li><svg class="ico"><use href="#clock"></use></svg> {{ site.company.hours }}</li>
       </ul>
-      <a href="https://wa.me/{{ site.company.whatsapp_number }}" class="btn btn--wa btn--sm btn--block" rel="noopener"><svg class="ico"><use href="#whatsapp"></use></svg> {{ t.quote.whatsapp_cta }}</a>
+      <a href="https://wa.me/{{ site.company.whatsapp_number }}?text={{ t.quote.fab_greeting | urlencode }}" class="btn btn--wa btn--sm btn--block" rel="noopener"><svg class="ico"><use href="#whatsapp"></use></svg> {{ t.quote.whatsapp_cta }}</a>
     </div>
   </div>
 

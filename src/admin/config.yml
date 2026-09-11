@@ -179,6 +179,16 @@ collections:
               - { name: error_message, label: Message if sending fails, widget: text }
               - { name: whatsapp_prompt, label: WhatsApp invitation, widget: text }
               - { name: whatsapp_cta, label: WhatsApp button, widget: string }
+              - { name: wa_also, label: "WhatsApp tick-box on the form", widget: text }
+              - { name: wa_blocked, label: "Message if the WhatsApp window is blocked", widget: text }
+              - { name: fab_label, label: "Floating WhatsApp button label", widget: string }
+              - { name: fab_greeting, label: "Message pre-filled in WhatsApp", widget: text }
+              - { name: wa_title, label: "WhatsApp summary: heading", widget: string }
+              - { name: wa_product, label: "WhatsApp summary: product", widget: string }
+              - { name: wa_qty, label: "WhatsApp summary: quantity", widget: string }
+              - { name: wa_dest, label: "WhatsApp summary: destination", widget: string }
+              - { name: wa_shipping, label: "WhatsApp summary: shipping", widget: string }
+              - { name: wa_company, label: "WhatsApp summary: company", widget: string }
               - { name: f_consent, label: Consent checkbox text, widget: text }
               - { name: files_note, label: "Note: where to send files", widget: text }
               - { name: email_subject, label: Subject of the e-mail you receive, widget: string }

@@ -166,6 +166,8 @@
   const formDone = $('#formDone');
   const formErr  = $('#formErr');
   const waSend   = $('#waSend');
+  const waAlso   = $('#waAlso');
+  const waNote   = $('#waNote');
 
   // Mirrors the submitted request back to the client so they can send the same
   // summary over WhatsApp in one tap. This is deliberately customer-initiated:
@@ -212,6 +214,16 @@
       const data      = new FormData(form);
       data.append('locale', form.dataset.locale || 'en');
 
+      // A pop-up opened after an await is no longer tied to the click and gets
+      // blocked, so WhatsApp has to be opened now — before the request goes out.
+      const waUrl = form.dataset.wa ? buildWhatsAppLink(form.dataset.wa, data, form) : '';
+      const wantsWa = !!(waAlso && waAlso.checked && waUrl);
+      let waWindow = null;
+      if (wantsWa) {
+        waWindow = window.open(waUrl, '_blank');
+        if (waWindow) waWindow.opener = null;
+      }
+
       if (formErr) formErr.hidden = true;
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -229,7 +241,12 @@
         const body = await res.json().catch(() => ({}));
         if (!res.ok || body.success === false) throw new Error(body.message || 'HTTP ' + res.status);
 
-        if (waSend && form.dataset.wa) waSend.href = buildWhatsAppLink(form.dataset.wa, data, form);
+        if (waSend && waUrl) waSend.href = waUrl;
+        if (waNote) {
+          const blocked = wantsWa && !waWindow;
+          waNote.textContent = blocked ? waNote.dataset.blocked : waNote.dataset.prompt;
+          waNote.classList.toggle('is-warning', blocked);
+        }
         if (formDone) {
           formDone.hidden = false;
           formDone.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });

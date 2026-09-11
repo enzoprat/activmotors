@@ -241,7 +241,11 @@
     "wa_qty": "Quantity",
     "wa_dest": "Destination",
     "wa_shipping": "Shipping",
-    "wa_company": "Company"
+    "wa_company": "Company",
+    "wa_also": "Also open WhatsApp with a summary of this request",
+    "wa_blocked": "Your browser blocked the WhatsApp window. Use the button below.",
+    "fab_label": "Chat with us on WhatsApp",
+    "fab_greeting": "Hello, I would like information about sourcing from the UAE."
   },
   "example": {
     "title": "Example Quote (Road Freight)",

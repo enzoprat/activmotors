@@ -459,12 +459,40 @@ input,select,textarea{font:inherit;color:inherit}
 /* =========================================================
    BACK TO TOP
    ========================================================= */
+/* floating buttons, stacked so they never collide */
+.fabs{
+  position:fixed;right:22px;bottom:22px;z-index:140;
+  display:flex;flex-direction:column;align-items:flex-end;gap:12px;
+}
 .to-top{
-  position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;
-  background:var(--gold);color:#231603;display:grid;place-items:center;z-index:140;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--gold);color:#231603;display:grid;place-items:center;
   box-shadow:0 8px 22px rgba(245,166,35,.45);
   opacity:0;visibility:hidden;transform:translateY(14px);transition:.35s var(--ease);
 }
+
+/* WhatsApp stays reachable at any scroll position; the label unrolls on hover
+   on pointer devices and is hidden on touch, where there is no hover state. */
+.fab-wa{
+  display:flex;align-items:center;gap:0;
+  height:54px;padding:0 15px;border-radius:100px;
+  background:#25d366;color:#053a17;
+  box-shadow:0 10px 26px rgba(37,211,102,.45);
+  transition:gap .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.fab-wa:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(37,211,102,.55)}
+.fab-wa .ico{width:24px;height:24px;stroke-width:1.6;flex:none}
+.fab-wa__label{
+  max-width:0;overflow:hidden;white-space:nowrap;
+  font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  transition:max-width .4s var(--ease);
+}
+@media (hover:hover){
+  .fab-wa:hover{gap:10px}
+  .fab-wa:hover .fab-wa__label{max-width:240px}
+}
+.fab-wa:focus-visible{gap:10px}
+.fab-wa:focus-visible .fab-wa__label{max-width:240px}
 .to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
 .to-top:hover{background:var(--gold-light);transform:translateY(-3px)}
 .to-top .ico{width:19px;height:19px;stroke-width:2}
@@ -548,7 +576,8 @@ input,select,textarea{font:inherit;color:inherit}
   .qform__cols{grid-template-columns:1fr;gap:20px}
   .footer__grid{grid-template-columns:1fr}
   .footer__bar-inner{flex-direction:column;text-align:center;gap:10px}
-  .to-top{right:14px;bottom:14px}
+  .fabs{right:14px;bottom:14px;gap:10px}
+  .fab-wa{height:50px;padding:0 13px}
 }
 
 @media (max-width:460px){
@@ -697,6 +726,16 @@ input,select,textarea{font:inherit;color:inherit}
   padding:12px 14px;font-size:12px;line-height:1.6;color:var(--muted);
 }
 .qform__files-note .ico{color:var(--gold-dark);margin-top:2px}
+
+/* the WhatsApp opt-in reads as an action, not as small print like the consent */
+.consent--wa span{display:flex;align-items:center;gap:7px;color:var(--ink);font-weight:600}
+.consent--wa .ico{color:#1da851;flex:none}
+.consent--wa input{accent-color:#1da851}
+
+.qform__wa-note.is-warning{
+  color:#8a5a00;background:#fff6e3;border:1px solid #f0d9a8;
+  border-radius:7px;padding:9px 12px;
+}
 
 .qform__done{margin-top:14px}
 .qform__wa-note{font-size:12.5px;color:var(--muted);text-align:center;margin:12px 0 9px}

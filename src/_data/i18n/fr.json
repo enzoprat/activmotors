@@ -241,7 +241,11 @@
     "wa_qty": "Quantité",
     "wa_dest": "Destination",
     "wa_shipping": "Expédition",
-    "wa_company": "Société"
+    "wa_company": "Société",
+    "wa_also": "Ouvrir aussi WhatsApp avec le récapitulatif de ma demande",
+    "wa_blocked": "Votre navigateur a bloqué la fenêtre WhatsApp. Utilisez le bouton ci-dessous.",
+    "fab_label": "Discuter avec nous sur WhatsApp",
+    "fab_greeting": "Bonjour, je souhaite des informations sur le sourcing depuis les Émirats."
   },
   "example": {
     "title": "Exemple de devis (fret routier)",

@@ -61,7 +61,15 @@
 
 {% include "partials/footer.njk" %}
 
-<a href="#" class="to-top" id="toTop" aria-label="{{ t.footer.back_to_top }}"><svg class="ico"><use href="#arrow-up"></use></svg></a>
+{#- Both floating buttons share one stack so they cannot overlap. -#}
+<div class="fabs">
+  <a href="#" class="to-top" id="toTop" aria-label="{{ t.footer.back_to_top }}"><svg class="ico"><use href="#arrow-up"></use></svg></a>
+  <a href="https://wa.me/{{ site.company.whatsapp_number }}?text={{ t.quote.fab_greeting | urlencode }}" class="fab-wa" target="_blank" rel="noopener"
+     aria-label="{{ t.quote.fab_label }}">
+    <svg class="ico" aria-hidden="true"><use href="#whatsapp"></use></svg>
+    <span class="fab-wa__label">{{ t.quote.fab_label }}</span>
+  </a>
+</div>
 
 <script src="{{ '/assets/js/main.js' | url }}"></script>
 </body>
