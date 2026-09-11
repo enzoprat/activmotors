@@ -1,0 +1,58 @@
+<footer class="footer" id="contact">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="{{ homeUrl | url }}" class="logo logo--light">
+        <span class="logo__mark">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M6 14 24 4l18 10v20L24 44 6 34z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="logo__txt"><strong>{{ site.company.name }}</strong><em>{{ site.company.tagline }}</em></span>
+      </a>
+      <p>{{ t.footer.about }}</p>
+      <ul class="socials">
+        {%- for social in site.socials %}{% if social.url %}
+        <li><a href="{{ social.url }}" aria-label="{{ social.label }}" rel="noopener"><svg class="ico"><use href="#{{ social.icon }}"></use></svg></a></li>
+        {%- endif %}{% endfor %}
+      </ul>
+    </div>
+
+    <nav class="footer__col" aria-label="{{ t.footer.links_title }}">
+      <h3>{{ t.footer.links_title }}</h3>
+      <ul>
+        <li><a href="{{ homeUrl | url }}">{{ t.nav.home }}</a></li>
+        <li><a href="{{ (homeUrl + '#categories') | url }}">{{ t.nav.products }}</a></li>
+        <li><a href="{{ (homeUrl + '#how') | url }}">{{ t.nav.how }}</a></li>
+        <li><a href="{{ (homeUrl + '#quote') | url }}">{{ t.nav.cta_label }}</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer__col" aria-label="{{ t.footer.products_title }}">
+      <h3>{{ t.footer.products_title }}</h3>
+      <ul>
+        {%- for c in categories %}
+        <li><a href="{{ ('/' + locale + '/' + c[locale].slug + '/') | url }}">{{ c[locale].nav }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <div class="footer__col footer__contact">
+      <h3>{{ t.footer.contact_title }}</h3>
+      <ul>
+        <li><svg class="ico"><use href="#pin"></use></svg> {{ site.company.address }}</li>
+        <li><svg class="ico"><use href="#phone"></use></svg> <a href="{{ site.company.phone | telLink }}">{{ site.company.phone }}</a></li>
+        <li><svg class="ico"><use href="#mail"></use></svg> <a href="mailto:{{ site.company.email }}">{{ site.company.email }}</a></li>
+        <li><svg class="ico"><use href="#clock"></use></svg> {{ site.company.hours }}</li>
+      </ul>
+      <a href="https://wa.me/{{ site.company.whatsapp_number }}" class="btn btn--wa btn--sm btn--block" rel="noopener"><svg class="ico"><use href="#whatsapp"></use></svg> {{ t.quote.whatsapp_cta }}</a>
+    </div>
+  </div>
+
+  <div class="footer__bar">
+    <div class="container footer__bar-inner">
+      <p>{{ t.footer.copyright }}</p>
+      <ul>{% for l in t.footer.legal %}<li><a href="{{ l.url | url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+    </div>
+  </div>
+</footer>

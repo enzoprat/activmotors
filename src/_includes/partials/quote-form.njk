@@ -1,0 +1,122 @@
+<section class="section quote" id="quote">
+  <div class="container quote__grid">
+
+    <div class="qform reveal">
+      <h2 class="qform__title">{{ t.quote.title }}</h2>
+      <p class="qform__sub">{{ t.quote.subtitle }}</p>
+
+      <form class="qform__form" id="quoteForm" novalidate
+            data-endpoint="/api/quote"
+            data-locale="{{ locale }}"
+            data-wa="{{ site.company.whatsapp_number }}">
+        <div class="qform__cols">
+
+          <fieldset class="qcol">
+            <legend>{{ t.quote.legend_contact }}</legend>
+            <label class="field"><span>{{ t.quote.f_company }} <i>*</i></span><input type="text" name="company" required></label>
+            <label class="field"><span>{{ t.quote.f_person }} <i>*</i></span><input type="text" name="person" required></label>
+            <label class="field"><span>{{ t.quote.f_email }} <i>*</i></span><input type="email" name="email" required></label>
+            <label class="field"><span>{{ t.quote.f_phone }} <i>*</i></span><input type="tel" name="phone" required></label>
+            <div class="field-row">
+              <label class="field"><span>{{ t.quote.f_country }} <i>*</i></span>
+                <select name="country" required>{% for c in t.quote.countries %}<option>{{ c }}</option>{% endfor %}</select>
+              </label>
+              <label class="field"><span>{{ t.quote.f_city }} <i>*</i></span>
+                <select name="city" required>{% for c in t.quote.cities %}<option>{{ c }}</option>{% endfor %}</select>
+              </label>
+            </div>
+            <label class="field"><span>{{ t.quote.f_notes }}</span>
+              <textarea name="notes" rows="4" placeholder="{{ t.quote.f_notes_ph }}"></textarea>
+            </label>
+          </fieldset>
+
+          <fieldset class="qcol">
+            <legend>{{ t.quote.legend_product }}</legend>
+            <label class="field"><span>{{ t.quote.f_category }} <i>*</i></span>
+              <select name="category" required>
+                <option value="">{{ t.quote.f_category_ph }}</option>
+                {% for c in t.quote.product_categories %}<option{% if preselect and preselect == c %} selected{% endif %}>{{ c }}</option>{% endfor %}
+              </select>
+            </label>
+            <label class="field"><span>{{ t.quote.f_product }} <i>*</i></span><input type="text" name="product" placeholder="{{ t.quote.f_product_ph }}" required></label>
+            <label class="field"><span>{{ t.quote.f_oem }}</span><input type="text" name="oem" placeholder="{{ t.quote.f_oem_ph }}"></label>
+            <label class="field"><span>{{ t.quote.f_brand }}</span>
+              <select name="brand">{% for b in t.quote.brand_preferences %}<option>{{ b }}</option>{% endfor %}</select>
+            </label>
+            <label class="field"><span>{{ t.quote.f_packaging }}</span>
+              <select name="packaging"><option value="">{{ t.quote.f_packaging_ph }}</option>{% for p in t.quote.packaging_types %}<option>{{ p }}</option>{% endfor %}</select>
+            </label>
+            <label class="field"><span>{{ t.quote.f_qty }} <i>*</i></span><input type="text" name="qty" placeholder="{{ t.quote.f_qty_ph }}" required></label>
+          </fieldset>
+
+          <fieldset class="qcol">
+            <legend>{{ t.quote.legend_shipping }}</legend>
+            <label class="field"><span>{{ t.quote.f_dest_country }} <i>*</i></span>
+              <select name="dest_country" required>{% for c in t.quote.countries %}<option>{{ c }}</option>{% endfor %}</select>
+            </label>
+            <label class="field"><span>{{ t.quote.f_dest_port }} <i>*</i></span>
+              <select name="dest_port" required>{% for p in t.quote.destination_ports %}<option>{{ p }}</option>{% endfor %}</select>
+            </label>
+
+            <div class="field">
+              <span class="field__label">{{ t.quote.f_shipping }} <i>*</i></span>
+              <div class="ship">
+                {%- for opt in t.delivery.options %}
+                <label class="ship__opt">
+                  <input type="radio" name="shipping" value="{{ opt.key }}"{% if opt.key == "road" %} checked{% endif %}>
+                  <span><svg class="ico"><use href="#{{ opt.icon }}"></use></svg><em>{{ opt.title }}</em></span>
+                </label>
+                {%- endfor %}
+              </div>
+            </div>
+
+            <label class="field"><span>{{ t.quote.f_date }}</span><input type="date" name="date"></label>
+            <label class="field"><span>{{ t.quote.f_incoterm }} <i class="hint" title="EXW, FOB, CIF, DDP…">?</i></span>
+              <select name="incoterm"><option value="">{{ t.quote.f_incoterm_ph }}</option>{% for i in t.quote.incoterms %}<option>{{ i }}</option>{% endfor %}</select>
+            </label>
+            <div class="field">
+              <span class="field__label">{{ t.quote.f_upload }}</span>
+              <div class="upload" id="upload">
+                <input type="file" id="fileInput" name="files" multiple accept=".xls,.xlsx,.csv,.pdf,.png,.jpg,.jpeg">
+                <span class="upload__btn">{{ t.quote.f_upload_btn }}</span>
+                <span class="upload__name" id="fileName">{{ t.quote.f_upload_none }}</span>
+              </div>
+              <small class="field__note">{{ t.quote.max_upload_note }}</small>
+            </div>
+          </fieldset>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>{{ t.quote.f_consent }}</span>
+        </label>
+
+        <button type="submit" class="btn btn--gold btn--block">{{ t.quote.submit_label }}</button>
+
+        <div class="qform__done" id="formDone" hidden>
+          <p class="qform__ok">{{ t.quote.success_message }}</p>
+          <p class="qform__wa-note">{{ t.quote.whatsapp_prompt }}</p>
+          <a href="#" class="btn btn--wa btn--block" id="waSend" rel="noopener">
+            <svg class="ico"><use href="#whatsapp"></use></svg> {{ t.quote.whatsapp_cta }}
+          </a>
+        </div>
+        <p class="qform__err" id="formErr" hidden>{{ t.quote.error_message }} <a href="mailto:{{ site.company.email }}">{{ site.company.email }}</a></p>
+      </form>
+    </div>
+
+    <aside class="example reveal" data-delay="120">
+      <h3 class="example__title">{{ t.example.title }}</h3>
+      <p class="example__route">{{ t.example.route }}</p>
+      <table class="example__table">
+        <thead><tr><th>{{ t.example.col_description }}</th><th>{{ t.example.col_amount }}</th></tr></thead>
+        <tbody>
+          {%- for row in t.example.rows %}
+          <tr{% if row.style %} class="{{ row.style }}"{% endif %}><td>{{ row.label }}</td><td>{{ row.amount }}</td></tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+      <p class="example__note">{{ t.example.note }}</p>
+      <a href="#quoteForm" class="btn btn--navy btn--block btn--sm">{{ t.example.cta_label }}</a>
+    </aside>
+  </div>
+</section>

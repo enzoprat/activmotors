@@ -1,0 +1,152 @@
+{
+  "code": "fr",
+  "label": "Français",
+  "short": "FR",
+  "dir": "ltr",
+  "home_url": "/fr/",
+  "meta": {
+    "title": "Pièces auto, lubrifiants et véhicules exportés de Dubaï | UAE Sourcing",
+    "description": "Nous sourçons, regroupons et exportons pièces détachées auto, lubrifiants et véhicules depuis des fournisseurs vérifiés aux Émirats vers le Koweït, le Golfe et l'Afrique."
+  },
+  "nav": {
+    "cta_label": "Demander un devis",
+    "home": "Accueil",
+    "products": "Produits",
+    "how": "Comment ça marche",
+    "contact": "Contact",
+    "skip": "Aller au contenu",
+    "menu": "Menu",
+    "breadcrumb": "Fil d'ariane"
+  },
+  "hero": {
+    "eyebrow": "Votre partenaire de confiance, des Émirats vers le monde",
+    "title_line_1": "Pièces auto, lubrifiants",
+    "title_line_2": "et véhicules – sourcés aux Émirats,",
+    "title_line_3": "livrés à votre destination",
+    "text": "Nous sourçons, regroupons et exportons des produits de qualité depuis des fournisseurs vérifiés aux Émirats arabes unis vers le Koweït, le Golfe, l'Afrique et l'international.",
+    "cta_primary": "Demander un devis",
+    "cta_secondary": "Envoyer votre liste de besoins",
+    "badges": [
+      { "icon": "shield", "label": "Fournisseurs vérifiés" },
+      { "icon": "tag", "label": "Prix compétitifs" },
+      { "icon": "clock", "label": "Livraison dans les délais" },
+      { "icon": "doc", "label": "Documents d'export" }
+    ]
+  },
+  "delivery": {
+    "title": "Options de livraison",
+    "subtitle": "Choisissez votre mode d'expédition",
+    "more_label": "En savoir plus",
+    "options": [
+      { "key": "air", "icon": "plane", "title": "Fret aérien", "note": "Livraison rapide", "eta": "3 à 7 jours" },
+      { "key": "sea", "icon": "ship", "title": "Fret maritime", "note": "Économique", "eta": "7 à 25 jours" },
+      { "key": "road", "icon": "truck", "title": "Fret routier", "note": "Fiable et souple", "eta": "2 à 4 jours (Golfe)" }
+    ]
+  },
+  "stats": [
+    { "icon": "gear", "value": "10000", "suffix": "+", "label": "Références", "animated": true },
+    { "icon": "users", "value": "500", "suffix": "+", "label": "Fournisseurs vérifiés", "animated": true },
+    { "icon": "globe", "value": "50", "suffix": "+", "label": "Pays desservis", "animated": true },
+    { "icon": "headset", "value": "24/7", "suffix": "", "label": "Support client", "animated": false },
+    { "icon": "check-circle", "value": "100", "suffix": "%", "label": "Qualité garantie", "animated": true }
+  ],
+  "categories": {
+    "title": "Nos catégories",
+    "cta_label": "Voir les produits",
+    "help": {
+      "title": "Vous ne trouvez pas ce que vous cherchez ?",
+      "text": "Envoyez-nous votre référence, le modèle du véhicule ou une photo : notre équipe se charge de la recherche.",
+      "cta_label": "Envoyer ma demande"
+    }
+  },
+  "how": {
+    "title": "Comment ça marche",
+    "steps": [
+      { "icon": "list", "title": "1. Envoyez votre demande", "text": "Transmettez votre besoin via le formulaire, un fichier Excel ou des photos." },
+      { "icon": "search", "title": "2. Nous sourçons et vérifions", "text": "Nous identifions les meilleurs produits chez nos fournisseurs vérifiés." },
+      { "icon": "invoice", "title": "3. Recevez votre devis", "text": "Vous recevez notre meilleure offre, détaillée, avec les options de livraison." },
+      { "icon": "handshake", "title": "4. Confirmez et réglez", "text": "Vous validez la commande et procédez au paiement sécurisé." },
+      { "icon": "truck", "title": "5. Nous expédions et livrons", "text": "Nous regroupons, expédions et livrons à votre destination dans les délais." }
+    ]
+  },
+  "quote": {
+    "title": "Demander un devis",
+    "subtitle": "Renseignez les informations ci-dessous et nous revenons vers vous avec la meilleure offre.",
+    "submit_label": "Envoyer ma demande",
+    "sending_label": "Envoi en cours…",
+    "success_message": "Merci — votre demande a bien été reçue. Notre équipe vous répond sous 24 heures.",
+    "error_message": "Votre demande n'a pas pu être envoyée. Écrivez-nous directement à",
+    "whatsapp_prompt": "Vous préférez WhatsApp ? Envoyez-nous le même récapitulatif en un geste.",
+    "whatsapp_cta": "Envoyer sur WhatsApp",
+    "legend_contact": "Coordonnées",
+    "legend_product": "Informations produit",
+    "legend_shipping": "Livraison et expédition",
+    "f_company": "Société",
+    "f_person": "Interlocuteur",
+    "f_email": "E-mail",
+    "f_phone": "Téléphone / WhatsApp",
+    "f_country": "Pays",
+    "f_city": "Ville / port",
+    "f_notes": "Informations complémentaires",
+    "f_notes_ph": "Exigences particulières, consignes de livraison, etc.",
+    "f_category": "Catégorie de produit",
+    "f_category_ph": "Choisir une catégorie",
+    "f_product": "Produit / pièce",
+    "f_product_ph": "ex. huile moteur 15W-40, pare-chocs Toyota",
+    "f_oem": "Référence OEM / pièce",
+    "f_oem_ph": "Si vous la connaissez",
+    "f_brand": "Marque souhaitée",
+    "f_packaging": "Conditionnement",
+    "f_packaging_ph": "Choisir un conditionnement",
+    "f_qty": "Quantité",
+    "f_qty_ph": "ex. 100 fûts / 500 litres / 50 unités",
+    "f_dest_country": "Pays de destination",
+    "f_dest_port": "Lieu de livraison / port",
+    "f_shipping": "Mode d'expédition",
+    "f_date": "Date de livraison souhaitée",
+    "f_incoterm": "Incoterm souhaité",
+    "f_incoterm_ph": "Choisir un incoterm",
+    "f_upload": "Joindre votre liste (Excel, PDF, images)",
+    "f_upload_btn": "Choisir un fichier",
+    "f_upload_none": "Aucun fichier sélectionné",
+    "f_consent": "J'accepte d'être recontacté au sujet de cette demande par e-mail, téléphone ou WhatsApp.",
+    "max_upload_note": "Taille maximale : 10 Mo",
+    "countries": ["Koweït", "Arabie saoudite", "Qatar", "Oman", "Bahreïn", "Irak", "Autre"],
+    "cities": ["Koweït / Shuwaikh", "Port de Shuaiba", "Doha / Port Hamad", "Autre"],
+    "destination_ports": ["Koweït / Port de Shuwaikh", "Port de Shuaiba", "Porte à porte"],
+    "product_categories": ["Pièces détachées auto", "Pièces adaptables", "Lubrifiants et huiles", "Batteries", "Pneumatiques", "Pièces de carrosserie", "Véhicules"],
+    "brand_preferences": ["Toutes marques", "OEM / origine", "Adaptable"],
+    "packaging_types": ["Fût", "Carton", "Palette", "Vrac"],
+    "incoterms": ["EXW", "FOB", "CIF", "DAP", "DDP"]
+  },
+  "example": {
+    "title": "Exemple de devis (fret routier)",
+    "route": "Livraison : Dubaï, Émirats arabes unis vers Koweït",
+    "col_description": "Désignation",
+    "col_amount": "Montant (AED)",
+    "note": "Note : ces prix sont indicatifs et peuvent varier selon le marché, les quantités et les spécifications finales.",
+    "cta_label": "Demander mon devis réel",
+    "rows": [
+      { "label": "Coût produit (15W-40, fût 20 BL)", "amount": "1 200,00", "style": "" },
+      { "label": "Manutention et documents (Émirats)", "amount": "20,00", "style": "" },
+      { "label": "Fret routier (camion complet)", "amount": "8 000,00", "style": "" },
+      { "label": "Assurance", "amount": "150,00", "style": "" },
+      { "label": "Dédouanement Koweït (est.)", "amount": "120,00", "style": "" },
+      { "label": "Nos frais de service", "amount": "180,00", "style": "" },
+      { "label": "Coût total (avant marge)", "amount": "9 670,00", "style": "is-sub" },
+      { "label": "Notre marge", "amount": "930,00", "style": "" },
+      { "label": "Prix total pour vous (AED)", "amount": "10 600,00", "style": "is-total" },
+      { "label": "Prix au litre (env.)", "amount": "6,37 AED", "style": "is-unit" }
+    ]
+  },
+  "brands": { "title": "Nous travaillons avec des marques de confiance" },
+  "footer": {
+    "about": "Votre partenaire sourcing et export, des Émirats arabes unis vers le Koweït, le Golfe, l'Afrique et le monde entier.",
+    "contact_title": "Nous contacter",
+    "products_title": "Catégories de produits",
+    "links_title": "Liens utiles",
+    "copyright": "© 2026 UAE Sourcing. Tous droits réservés.",
+    "back_to_top": "Retour en haut",
+    "legal": [{ "label": "Politique de confidentialité", "url": "/fr/politique-de-confidentialite/" }]
+  }
+}

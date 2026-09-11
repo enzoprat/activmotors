@@ -1,0 +1,55 @@
+<div class="topbar">
+  <div class="container topbar__inner">
+    <ul class="topbar__left">
+      <li><svg class="ico"><use href="#pin"></use></svg> {{ "Based in UAE" if locale == "en" else "Basés aux Émirats" }}</li>
+      <li><svg class="ico"><use href="#check-badge"></use></svg> {{ "Sourcing from trusted suppliers" if locale == "en" else "Fournisseurs vérifiés" }}</li>
+    </ul>
+    <ul class="topbar__right">
+      <li><a href="{{ site.company.phone | telLink }}"><svg class="ico"><use href="#phone"></use></svg> {{ site.company.phone }}</a></li>
+      <li><a href="mailto:{{ site.company.email }}"><svg class="ico"><use href="#mail"></use></svg> {{ site.company.email }}</a></li>
+      <li class="lang">
+        <button class="lang__btn" type="button" aria-expanded="false">{{ t.short }} <svg class="ico ico--xs"><use href="#chevron"></use></svg></button>
+        <div class="lang__menu">
+          <a href="{{ altEn | url }}" hreflang="en"{% if locale == "en" %} class="is-active" aria-current="true"{% endif %}>English</a>
+          <a href="{{ altFr | url }}" hreflang="fr"{% if locale == "fr" %} class="is-active" aria-current="true"{% endif %}>Français</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="{{ homeUrl | url }}" class="logo" aria-label="{{ site.company.logo_aria }}">
+      <span class="logo__mark">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M6 14 24 4l18 10v20L24 44 6 34z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="logo__txt">
+        <strong>{{ site.company.name }}</strong>
+        <em>{{ site.company.tagline }}</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="{{ t.nav.products }}">
+      <ul class="nav__list">
+        <li><a href="{{ homeUrl | url }}"{% if not cat %} class="is-active" aria-current="page"{% endif %}>{{ t.nav.home }}</a></li>
+        <li class="has-drop">
+          <a href="{{ (homeUrl + '#categories') | url }}">{{ t.nav.products }} <svg class="ico ico--xs"><use href="#chevron"></use></svg></a>
+          <ul class="drop">
+            {%- for c in categories %}
+            <li><a href="{{ ('/' + locale + '/' + c[locale].slug + '/') | url }}"{% if cat and cat.key == c.key %} class="is-active" aria-current="page"{% endif %}>{{ c[locale].nav }}</a></li>
+            {%- endfor %}
+          </ul>
+        </li>
+        <li><a href="{{ (homeUrl + '#how') | url }}">{{ t.nav.how }}</a></li>
+        <li><a href="{{ (homeUrl + '#contact') | url }}">{{ t.nav.contact }}</a></li>
+      </ul>
+    </nav>
+
+    <a href="{{ (homeUrl + '#quote') | url }}" class="btn btn--gold btn--sm header__cta">{{ t.nav.cta_label }}</a>
+    <button class="burger" id="burger" type="button" aria-label="{{ t.nav.menu }}" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>

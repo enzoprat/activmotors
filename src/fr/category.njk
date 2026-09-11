@@ -1,0 +1,11 @@
+---
+pagination:
+  data: categories
+  size: 1
+  alias: cat
+permalink: "/fr/{{ cat.fr.slug }}/"
+eleventyComputed:
+  metaTitle: "{{ cat.fr.meta_title }}"
+  metaDescription: "{{ cat.fr.meta_description }}"
+---
+{% include "partials/category-body.njk" %}

@@ -1,0 +1,74 @@
+{%- set t = i18n[locale] -%}
+{%- set other = "fr" if locale == "en" else "en" -%}
+{%- set altEn = ("/en/" + cat.en.slug + "/") if cat else "/en/" -%}
+{%- set altFr = ("/fr/" + cat.fr.slug + "/") if cat else "/fr/" -%}
+{%- set selfUrl = altEn if locale == "en" else altFr -%}
+{%- set homeUrl = t.home_url -%}
+<!DOCTYPE html>
+<html lang="{{ t.code }}" dir="{{ t.dir }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ metaTitle or t.meta.title }}</title>
+<meta name="description" content="{{ metaDescription or t.meta.description }}">
+
+<link rel="canonical" href="{{ selfUrl | absUrl }}">
+<link rel="alternate" hreflang="en" href="{{ altEn | absUrl }}">
+<link rel="alternate" hreflang="fr" href="{{ altFr | absUrl }}">
+<link rel="alternate" hreflang="x-default" href="{{ altEn | absUrl }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.company.legal_name }}">
+<meta property="og:locale" content="{{ 'en_US' if locale == 'en' else 'fr_FR' }}">
+<meta property="og:title" content="{{ metaTitle or t.meta.title }}">
+<meta property="og:description" content="{{ metaDescription or t.meta.description }}">
+<meta property="og:url" content="{{ selfUrl | absUrl }}">
+<meta property="og:image" content="{{ (cat[locale].image if cat else site.og_image) or site.og_image | absUrl }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ metaTitle or t.meta.title }}">
+<meta name="twitter:description" content="{{ metaDescription or t.meta.description }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+<link rel="icon" href="{{ site.favicon | url }}" type="image/svg+xml">
+
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": site.company.legal_name,
+  "url": (homeUrl | absUrl),
+  "email": site.company.email,
+  "telephone": site.company.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": site.company.street,
+    "addressLocality": site.company.city,
+    "addressCountry": site.company.country
+  },
+  "areaServed": ["AE", "KW", "SA", "QA", "OM", "BH", "IQ"]
+} | jsonld | safe }}</script>
+
+{% block schema %}{% endblock %}
+</head>
+<body>
+
+{% include "sprite.njk" %}
+
+<a href="#main" class="skip">{{ t.nav.skip }}</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+{% include "partials/header.njk" %}
+
+<main id="main">
+{{ content | safe }}
+</main>
+
+{% include "partials/footer.njk" %}
+
+<a href="#" class="to-top" id="toTop" aria-label="{{ t.footer.back_to_top }}"><svg class="ico"><use href="#arrow-up"></use></svg></a>
+
+<script src="{{ '/assets/js/main.js' | url }}"></script>
+</body>
+</html>

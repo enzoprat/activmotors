@@ -1,0 +1,20 @@
+<section class="brands" id="brands">
+  <div class="container">
+    <h2 class="brands__title reveal">{{ t.brands.title }}</h2>
+  </div>
+  <div class="brands__wrap">
+    <button class="brands__nav brands__nav--prev" type="button" aria-label="{{ 'Previous brands' if locale == 'en' else 'Marques précédentes' }}">
+      <svg class="ico"><use href="#chevron-left"></use></svg>
+    </button>
+    <div class="brands__viewport" id="brandsViewport">
+      <ul class="brands__track" id="brandsTrack">
+        {%- for brand in site.brands %}
+        <li><span class="brand brand--{{ brand.shape }}"><img src="{{ brand.logo | url }}" alt="{{ brand.name }}" loading="lazy" width="120" height="56"></span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    <button class="brands__nav brands__nav--next" type="button" aria-label="{{ 'Next brands' if locale == 'en' else 'Marques suivantes' }}">
+      <svg class="ico"><use href="#chevron-right"></use></svg>
+    </button>
+  </div>
+</section>

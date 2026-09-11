@@ -1,0 +1,110 @@
+<section class="hero">
+  <div class="hero__bg">
+    <img src="{{ site.hero_image | url }}" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+    <span class="hero__overlay"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content reveal">
+      <p class="hero__eyebrow">{{ t.hero.eyebrow }}</p>
+      <h1 class="hero__title">{{ t.hero.title_line_1 }} <br class="br-lg">{{ t.hero.title_line_2 }} <br class="br-lg">{{ t.hero.title_line_3 }}</h1>
+      <p class="hero__text">{{ t.hero.text }}</p>
+      <div class="hero__actions">
+        <a href="#quote" class="btn btn--gold">{{ t.hero.cta_primary }}</a>
+        <a href="#quote" class="btn btn--ghost">{{ t.hero.cta_secondary }}</a>
+      </div>
+      <ul class="hero__badges">
+        {%- for badge in t.hero.badges %}
+        <li><svg class="ico"><use href="#{{ badge.icon }}"></use></svg> {{ badge.label }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+
+    <aside class="delivery reveal" data-delay="150">
+      <div class="delivery__head">
+        <h2>{{ t.delivery.title }}</h2>
+        <p>{{ t.delivery.subtitle }}</p>
+      </div>
+      <ul class="delivery__list">
+        {%- for opt in t.delivery.options %}
+        <li class="delivery__item{% if opt.key == 'road' %} is-active{% endif %}" data-freight="{{ opt.key }}">
+          <span class="delivery__ico"><svg class="ico"><use href="#{{ opt.icon }}"></use></svg></span>
+          <span class="delivery__body"><strong>{{ opt.title }}</strong><em>{{ opt.note }}</em></span>
+          <span class="delivery__eta">{{ opt.eta }}</span>
+        </li>
+        {%- endfor %}
+      </ul>
+      <a href="#how" class="delivery__more">{{ t.delivery.more_label }}</a>
+    </aside>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats__inner">
+    {%- for stat in t.stats %}
+    <div class="stat reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
+      <svg class="ico ico--lg"><use href="#{{ stat.icon }}"></use></svg>
+      <div>
+        {%- if stat.animated %}
+        <strong class="counter" data-target="{{ stat.value }}" data-suffix="{{ stat.suffix }}">0</strong>
+        {%- else %}
+        <strong>{{ stat.value }}</strong>
+        {%- endif %}
+        <span>{{ stat.label }}</span>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section categories" id="categories">
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title">{{ t.categories.title }}</h2>
+    </header>
+
+    <div class="cat-grid">
+      {%- for c in categories %}
+      {%- set d = c[locale] %}
+      <article class="cat reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
+        <div class="cat__media"><img src="{{ c.image | url }}" alt="{{ d.alt }}" loading="lazy"></div>
+        <div class="cat__body">
+          <h3><a href="{{ ('/' + locale + '/' + d.slug + '/') | url }}">{{ d.nav }}</a></h3>
+          <p>{{ d.card_text }}</p>
+          <a href="{{ ('/' + locale + '/' + d.slug + '/') | url }}" class="btn btn--outline btn--xs">{{ t.categories.cta_label }}</a>
+        </div>
+      </article>
+      {%- endfor %}
+
+      <aside class="cat-help reveal" data-delay="320">
+        <h3>{{ t.categories.help.title }}</h3>
+        <div class="cat-help__ico"><svg class="ico"><use href="#search-doc"></use></svg></div>
+        <p>{{ t.categories.help.text }}</p>
+        <a href="#quote" class="btn btn--navy btn--xs">{{ t.categories.help.cta_label }}</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint how" id="how">
+  <div class="container">
+    <header class="sec-head sec-head--center reveal">
+      <h2 class="sec-title">{{ t.how.title }}</h2>
+    </header>
+    <ol class="steps">
+      {%- for step in t.how.steps %}
+      {%- if not loop.first %}
+      <li class="step__arrow" aria-hidden="true"><svg class="ico"><use href="#arrow-right"></use></svg></li>
+      {%- endif %}
+      <li class="step reveal"{% if loop.index0 %} data-delay="{{ loop.index0 * 80 }}"{% endif %}>
+        <span class="step__ico"><svg class="ico"><use href="#{{ step.icon }}"></use></svg></span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+{% include "partials/quote-form.njk" %}
+{% include "partials/brands.njk" %}

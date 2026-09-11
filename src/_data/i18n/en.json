@@ -1,0 +1,152 @@
+{
+  "code": "en",
+  "label": "English",
+  "short": "EN",
+  "dir": "ltr",
+  "home_url": "/en/",
+  "meta": {
+    "title": "Automotive Parts, Lubricants & Vehicles Exported from Dubai | UAE Sourcing",
+    "description": "We source, consolidate and export quality automotive parts, lubricants and vehicles from trusted UAE suppliers to Kuwait, GCC, Africa and international markets."
+  },
+  "nav": {
+    "cta_label": "Request a Quote",
+    "home": "Home",
+    "products": "Products",
+    "how": "How It Works",
+    "contact": "Contact Us",
+    "skip": "Skip to content",
+    "menu": "Menu",
+    "breadcrumb": "Breadcrumb"
+  },
+  "hero": {
+    "eyebrow": "Your reliable partner from UAE to the world",
+    "title_line_1": "Automotive Parts, Lubricants",
+    "title_line_2": "& Vehicles – Sourced in UAE,",
+    "title_line_3": "Delivered to Your Destination",
+    "text": "We source, consolidate and export quality products from trusted suppliers in the UAE to Kuwait, GCC, Africa and international markets.",
+    "cta_primary": "Request a Quote",
+    "cta_secondary": "Upload Requirement List",
+    "badges": [
+      { "icon": "shield", "label": "Trusted Suppliers" },
+      { "icon": "tag", "label": "Competitive Pricing" },
+      { "icon": "clock", "label": "On-Time Delivery" },
+      { "icon": "doc", "label": "Export Documentation" }
+    ]
+  },
+  "delivery": {
+    "title": "Delivery Options",
+    "subtitle": "Choose your preferred shipping method",
+    "more_label": "Learn More",
+    "options": [
+      { "key": "air", "icon": "plane", "title": "Air Freight", "note": "Fast delivery", "eta": "3 – 7 Days" },
+      { "key": "sea", "icon": "ship", "title": "Sea Freight", "note": "Cost effective", "eta": "7 – 25 Days" },
+      { "key": "road", "icon": "truck", "title": "Road Freight", "note": "Reliable & flexible", "eta": "2 – 4 Days (GCC)" }
+    ]
+  },
+  "stats": [
+    { "icon": "gear", "value": "10000", "suffix": "+", "label": "Products", "animated": true },
+    { "icon": "users", "value": "500", "suffix": "+", "label": "Trusted Suppliers", "animated": true },
+    { "icon": "globe", "value": "50", "suffix": "+", "label": "Countries Served", "animated": true },
+    { "icon": "headset", "value": "24/7", "suffix": "", "label": "Customer Support", "animated": false },
+    { "icon": "check-circle", "value": "100", "suffix": "%", "label": "Quality Assured", "animated": true }
+  ],
+  "categories": {
+    "title": "Explore Our Categories",
+    "cta_label": "View Products",
+    "help": {
+      "title": "Can't Find What You Need?",
+      "text": "Send us your part number, vehicle model or photo and our sourcing team will find it for you.",
+      "cta_label": "Send Your Request"
+    }
+  },
+  "how": {
+    "title": "How It Works",
+    "steps": [
+      { "icon": "list", "title": "1. Submit Your Request", "text": "Send us your requirement via our form, Excel or photos." },
+      { "icon": "search", "title": "2. We Source & Check", "text": "We find the best products from our trusted suppliers." },
+      { "icon": "invoice", "title": "3. Receive Quotation", "text": "You receive our best quotation with all details and delivery options." },
+      { "icon": "handshake", "title": "4. Confirm & Pay", "text": "Confirm the order and proceed with secure payment." },
+      { "icon": "truck", "title": "5. We Ship & Deliver", "text": "We consolidate, ship and deliver to your destination on time." }
+    ]
+  },
+  "quote": {
+    "title": "Request a Quote",
+    "subtitle": "Fill in the details below and we will get back to you with the best offer.",
+    "submit_label": "Submit Request",
+    "sending_label": "Sending…",
+    "success_message": "Thank you — your request has been received. Our sourcing team will reply within 24 hours.",
+    "error_message": "Sorry, your request could not be sent. Please e-mail us directly at",
+    "whatsapp_prompt": "Prefer WhatsApp? Send us the same summary in one tap.",
+    "whatsapp_cta": "Send on WhatsApp",
+    "legend_contact": "Contact Information",
+    "legend_product": "Product Information",
+    "legend_shipping": "Delivery & Shipping",
+    "f_company": "Company Name",
+    "f_person": "Contact Person",
+    "f_email": "Email",
+    "f_phone": "Phone / WhatsApp",
+    "f_country": "Country",
+    "f_city": "City / Port",
+    "f_notes": "Additional Notes",
+    "f_notes_ph": "Any specific requirements, delivery instructions, etc.",
+    "f_category": "Product Category",
+    "f_category_ph": "Select Category",
+    "f_product": "Product / Part Name",
+    "f_product_ph": "e.g. 15W-40 Engine Oil, Toyota Bumper",
+    "f_oem": "OEM / Part Number",
+    "f_oem_ph": "If known",
+    "f_brand": "Brand Preference",
+    "f_packaging": "Packaging Type",
+    "f_packaging_ph": "Select Packaging",
+    "f_qty": "Quantity",
+    "f_qty_ph": "e.g. 100 Drums / 500 Liters / 50 Units",
+    "f_dest_country": "Destination Country",
+    "f_dest_port": "Delivery Location / Port",
+    "f_shipping": "Shipping Method",
+    "f_date": "Preferred Delivery Date",
+    "f_incoterm": "Incoterm Preference",
+    "f_incoterm_ph": "Select Incoterm",
+    "f_upload": "Upload Your List (Excel, PDF, Images)",
+    "f_upload_btn": "Choose File",
+    "f_upload_none": "No file chosen",
+    "f_consent": "I agree to be contacted about this request by e-mail, phone or WhatsApp.",
+    "max_upload_note": "Max file size: 10MB",
+    "countries": ["Kuwait", "Saudi Arabia", "Qatar", "Oman", "Bahrain", "Iraq", "Other"],
+    "cities": ["Kuwait City / Shuwaikh", "Shuaiba Port", "Doha / Hamad Port", "Other"],
+    "destination_ports": ["Kuwait City / Shuwaikh Port", "Shuaiba Port", "Door to Door"],
+    "product_categories": ["Automotive Parts", "Aftermarket Parts", "Lubricants & Oils", "Batteries", "Tires", "Body Parts", "Vehicles"],
+    "brand_preferences": ["Any Brand", "OEM / Genuine", "Aftermarket"],
+    "packaging_types": ["Drum", "Carton", "Pallet", "Loose"],
+    "incoterms": ["EXW", "FOB", "CIF", "DAP", "DDP"]
+  },
+  "example": {
+    "title": "Example Quote (Road Freight)",
+    "route": "Delivery: Dubai, UAE to Kuwait City",
+    "col_description": "Description",
+    "col_amount": "Amount (AED)",
+    "note": "Note: Prices are indicative and may vary based on market conditions, quantity and final specifications.",
+    "cta_label": "Request Your Actual Quote",
+    "rows": [
+      { "label": "Product Cost (15W-40, 20BL Drum)", "amount": "1,200.00", "style": "" },
+      { "label": "UAE Handling & Documentation", "amount": "20.00", "style": "" },
+      { "label": "Road Freight (FTL)", "amount": "8,000.00", "style": "" },
+      { "label": "Insurance", "amount": "150.00", "style": "" },
+      { "label": "Kuwait Import Clearance (Est.)", "amount": "120.00", "style": "" },
+      { "label": "Our Service Fee", "amount": "180.00", "style": "" },
+      { "label": "Total Cost (before margin)", "amount": "9,670.00", "style": "is-sub" },
+      { "label": "Our Margin", "amount": "930.00", "style": "" },
+      { "label": "Total Price to You (AED)", "amount": "10,600.00", "style": "is-total" },
+      { "label": "Price per Liter (Approx.)", "amount": "6.37 AED", "style": "is-unit" }
+    ]
+  },
+  "brands": { "title": "We Work With Trusted Brands" },
+  "footer": {
+    "about": "Your reliable sourcing and export partner from UAE to Kuwait, GCC, Africa and worldwide markets.",
+    "contact_title": "Contact Us",
+    "products_title": "Product Categories",
+    "links_title": "Quick Links",
+    "copyright": "© 2026 UAE Sourcing. All Rights Reserved.",
+    "back_to_top": "Back to top",
+    "legal": [{ "label": "Privacy Policy", "url": "/en/privacy-policy/" }]
+  }
+}
