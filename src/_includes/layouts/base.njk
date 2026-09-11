@@ -1,9 +1,3 @@
-{%- set t = i18n[locale] -%}
-{%- set other = "fr" if locale == "en" else "en" -%}
-{%- set altEn = ("/en/" + cat.en.slug + "/") if cat else "/en/" -%}
-{%- set altFr = ("/fr/" + cat.fr.slug + "/") if cat else "/fr/" -%}
-{%- set selfUrl = altEn if locale == "en" else altFr -%}
-{%- set homeUrl = t.home_url -%}
 <!DOCTYPE html>
 <html lang="{{ t.code }}" dir="{{ t.dir }}">
 <head>

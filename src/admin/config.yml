@@ -18,202 +18,215 @@ publish_mode: simple
 locale: en
 
 collections:
-  - name: content
-    label: Website content
+  # ---------------------------------------------------------------
+  # Anything that is the same in both languages.
+  # ---------------------------------------------------------------
+  - name: settings
+    label: Company & brands
     files:
-      - name: general
-        label: General & contact details
+      - name: company
+        label: Contact details
         file: src/_data/site.json
-        description: Company name, phone, email, address and page title.
+        description: Company name, phone, e-mail, address. Shown on every page in both languages.
         fields:
-          - name: meta
-            label: Search engine (SEO)
-            widget: object
-            collapsed: true
-            fields:
-              - { name: lang, label: Language code, widget: hidden, default: en }
-              - { name: title, label: Browser tab title, widget: string }
-              - { name: description, label: Google description, widget: text }
           - name: company
             label: Company details
             widget: object
             fields:
               - { name: name, label: Company name, widget: string }
               - { name: tagline, label: Tagline (under the name), widget: string }
+              - { name: legal_name, label: Full legal name, widget: string, hint: "Used by Google in search results." }
               - { name: logo_aria, label: Logo description (for screen readers), widget: string }
               - { name: phone, label: Phone number, widget: string, hint: "Spaces are fine — the click-to-call link is built automatically." }
-              - { name: email, label: Email address, widget: string }
-              - { name: address, label: Office address, widget: text }
+              - { name: whatsapp_number, label: WhatsApp number, widget: string, hint: "Digits only, with country code and no +. Example: 971501234567" }
+              - { name: email, label: E-mail address, widget: string }
+              - { name: address, label: Office address (displayed), widget: text }
+              - { name: street, label: Street line (for Google), widget: string }
+              - { name: city, label: City, widget: string }
+              - { name: country, label: Country code, widget: string, hint: "Two letters, e.g. AE." }
               - { name: hours, label: Opening hours, widget: string }
-              - { name: whatsapp_url, label: WhatsApp link, widget: string, required: false }
-              - { name: whatsapp_label, label: WhatsApp button text, widget: string }
-          - name: topbar
-            label: Top bar
-            widget: object
-            collapsed: true
+          - name: socials
+            label: Social links
+            widget: list
+            summary: "{{fields.label}}"
+            hint: Leave the address empty to hide the icon.
             fields:
-              - name: badges
-                label: Small badges (top left)
-                widget: list
-                fields:
-                  - { name: icon, label: Icon, widget: select, options: [pin, check-badge, shield, tag, clock, doc, globe, truck] }
-                  - { name: label, label: Text, widget: string }
-              - name: languages
-                label: Language menu
-                widget: list
-                collapsed: true
-                fields:
-                  - { name: label, label: Language name, widget: string }
-                  - { name: url, label: Link, widget: string }
-                  - { name: active, label: Currently selected, widget: boolean, default: false }
-          - name: nav
-            label: Main menu
-            widget: object
-            collapsed: true
+              - { name: icon, label: Network, widget: select, options: [facebook, linkedin, instagram, youtube, whatsapp] }
+              - { name: label, label: Name, widget: string }
+              - { name: url, label: Address, widget: string, required: false }
+          - name: brands
+            label: Brand logos
+            widget: list
+            summary: "{{fields.name}}"
             fields:
-              - { name: cta_label, label: Button text (top right), widget: string }
-              - name: items
-                label: Menu items
-                widget: list
-                collapsed: true
-                label_singular: menu item
-                summary: "{{fields.label}}"
-                fields:
-                  - { name: label, label: Text, widget: string }
-                  - { name: url, label: Link, widget: string }
-                  - { name: active, label: Highlighted, widget: boolean, default: false, required: false }
-                  - name: children
-                    label: Dropdown items
-                    widget: list
-                    required: false
-                    collapsed: true
-                    fields:
-                      - { name: label, label: Text, widget: string }
-                      - { name: url, label: Link, widget: string }
+              - { name: name, label: Brand name, widget: string }
+              - { name: logo, label: Logo, widget: image }
+              - { name: shape, label: Logo shape, widget: select, options: [mark, word], hint: "mark = square emblem, word = wide wordmark." }
+          - { name: hero_image, label: Home page background image, widget: image }
+          - { name: og_image, label: Share preview image, widget: image, hint: "Shown when a link to the site is posted on WhatsApp or LinkedIn." }
+          - { name: favicon, label: Browser tab icon, widget: image }
+          - { name: locales, label: Languages, widget: hidden }
+          - { name: default_locale, label: Default language, widget: hidden }
+
+  # ---------------------------------------------------------------
+  # One file per language. Same fields on both sides.
+  # ---------------------------------------------------------------
+  - name: content
+    label: Home page text
+    files:
+      - name: en
+        label: English
+        file: src/_data/i18n/en.json
+        description: Every piece of text on the English home page.
+        fields: &locale_fields
+          - { name: code, label: Language code, widget: hidden }
+          - { name: label, label: Language name, widget: hidden }
+          - { name: short, label: Language abbreviation, widget: hidden }
+          - { name: dir, label: Text direction, widget: hidden }
+          - { name: home_url, label: Home page address, widget: hidden }
+          - name: meta
+            label: Search engine
+            widget: object
+            fields:
+              - { name: title, label: Browser tab title, widget: string, pattern: ['^.{1,60}$', 'Keep this to 60 characters or fewer — Google cuts off anything longer.'] }
+              - { name: description, label: Google description, widget: text, pattern: ['^.{1,160}$', 'Keep this to 160 characters or fewer.'] }
           - name: hero
-            label: Hero (top of page)
+            label: Top of the page
             widget: object
             fields:
-              - { name: image, label: Background image, widget: image }
-              - { name: eyebrow, label: Small text above the title, widget: string }
+              - { name: eyebrow, label: Small line above the title, widget: string }
               - { name: title_line_1, label: Title — line 1, widget: string }
               - { name: title_line_2, label: Title — line 2, widget: string }
               - { name: title_line_3, label: Title — line 3, widget: string }
-              - { name: text, label: Paragraph, widget: text }
-              - name: cta_primary
-                label: Main button
-                widget: object
-                fields:
-                  - { name: label, label: Text, widget: string }
-                  - { name: url, label: Link, widget: string }
-              - name: cta_secondary
-                label: Second button
-                widget: object
-                fields:
-                  - { name: label, label: Text, widget: string }
-                  - { name: url, label: Link, widget: string }
+              - { name: text, label: Introduction, widget: text }
+              - { name: cta_primary, label: Main button, widget: string }
+              - { name: cta_secondary, label: Second button, widget: string }
               - name: badges
-                label: Badges under the buttons
+                label: Reassurance points
                 widget: list
-                collapsed: true
                 summary: "{{fields.label}}"
                 fields:
-                  - { name: icon, label: Icon, widget: select, options: [shield, tag, clock, doc, check-badge, globe, gear] }
+                  - { name: icon, label: Icon, widget: select, options: [shield, tag, clock, doc, check-badge, check-circle] }
                   - { name: label, label: Text, widget: string }
           - name: delivery
-            label: Delivery options card
+            label: Delivery options
             widget: object
-            collapsed: true
             fields:
-              - { name: title, label: Card title, widget: string }
-              - { name: subtitle, label: Card subtitle, widget: string }
-              - { name: more_label, label: Link text at the bottom, widget: string }
+              - { name: title, label: Heading, widget: string }
+              - { name: subtitle, label: Sub-heading, widget: string }
+              - { name: more_label, label: Link text, widget: string }
               - name: options
                 label: Shipping methods
                 widget: list
-                summary: "{{fields.title}} — {{fields.eta}}"
-                hint: These also fill the "Shipping Method" choices in the quote form.
+                summary: "{{fields.title}}"
                 fields:
-                  - { name: key, label: Internal code, widget: select, options: [air, sea, road] }
+                  - { name: key, label: Internal code, widget: hidden }
                   - { name: icon, label: Icon, widget: select, options: [plane, ship, truck] }
                   - { name: title, label: Name, widget: string }
-                  - { name: note, label: Short note, widget: string }
+                  - { name: note, label: Short description, widget: string }
                   - { name: eta, label: Delivery time, widget: string }
-                  - { name: active, label: Pre-selected, widget: boolean, default: false }
           - name: stats
             label: Figures bar
             widget: list
-            collapsed: true
-            summary: "{{fields.value}}{{fields.suffix}} {{fields.label}}"
+            summary: "{{fields.label}}"
             fields:
-              - { name: icon, label: Icon, widget: select, options: [gear, users, globe, headset, check-circle, shield, truck] }
-              - { name: value, label: Number, widget: string, hint: "Digits only if the count-up animation is on (e.g. 10000)." }
-              - { name: suffix, label: Symbol after the number, widget: string, required: false, hint: "e.g. + or %" }
+              - { name: icon, label: Icon, widget: select, options: [gear, users, globe, headset, check-circle] }
+              - { name: value, label: Figure, widget: string }
+              - { name: suffix, label: Suffix, widget: string, required: false }
               - { name: label, label: Caption, widget: string }
               - { name: animated, label: Count up on scroll, widget: boolean, default: true }
           - name: categories
             label: Categories section
             widget: object
             fields:
-              - { name: title, label: Section title, widget: string }
-              - { name: cta_label, label: Button text on every card, widget: string }
-              - name: items
-                label: Category cards
-                widget: list
-                summary: "{{fields.title}}"
-                fields:
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Description, widget: text }
-                  - { name: image, label: Photo, widget: image }
-                  - { name: alt, label: Photo description (for screen readers), widget: string }
-                  - { name: url, label: Button link, widget: string }
+              - { name: title, label: Heading, widget: string }
+              - { name: cta_label, label: Button on each card, widget: string }
               - name: help
-                label: '"Can''t find it?" card'
+                label: "\"Can't find it\" box"
                 widget: object
                 fields:
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Description, widget: text }
-                  - { name: cta_label, label: Button text, widget: string }
-                  - { name: cta_url, label: Button link, widget: string }
+                  - { name: title, label: Heading, widget: string }
+                  - { name: text, label: Text, widget: text }
+                  - { name: cta_label, label: Button, widget: string }
           - name: how
             label: How it works
             widget: object
             fields:
-              - { name: title, label: Section title, widget: string }
+              - { name: title, label: Heading, widget: string }
               - name: steps
                 label: Steps
                 widget: list
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: icon, label: Icon, widget: select, options: [list, search, invoice, handshake, truck, plane, ship, doc, gear] }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Description, widget: text }
+                  - { name: icon, label: Icon, widget: select, options: [list, search, invoice, handshake, truck] }
+                  - { name: title, label: Step title, widget: string }
+                  - { name: text, label: Step text, widget: text }
           - name: quote
             label: Quote form
             widget: object
             collapsed: true
             fields:
-              - { name: title, label: Form title, widget: string }
-              - { name: subtitle, label: Form subtitle, widget: text }
-              - { name: submit_label, label: Submit button text, widget: string }
-              - { name: success_message, label: Thank-you message, widget: text }
-              - { name: countries, label: Countries, widget: list, field: { name: value, label: Country, widget: string } }
-              - { name: cities, label: Cities / ports, widget: list, field: { name: value, label: City, widget: string } }
-              - { name: product_categories, label: Product categories, widget: list, field: { name: value, label: Category, widget: string } }
-              - { name: brand_preferences, label: Brand preferences, widget: list, field: { name: value, label: Option, widget: string } }
-              - { name: packaging_types, label: Packaging types, widget: list, field: { name: value, label: Type, widget: string } }
-              - { name: destination_ports, label: Destination ports, widget: list, field: { name: value, label: Port, widget: string } }
-              - { name: incoterms, label: Incoterms, widget: list, field: { name: value, label: Incoterm, widget: string } }
+              - { name: title, label: Heading, widget: string }
+              - { name: subtitle, label: Sub-heading, widget: text }
+              - { name: submit_label, label: Submit button, widget: string }
+              - { name: sending_label, label: "Button while sending", widget: string }
+              - { name: success_message, label: Message after sending, widget: text }
+              - { name: error_message, label: Message if sending fails, widget: text }
+              - { name: whatsapp_prompt, label: WhatsApp invitation, widget: text }
+              - { name: whatsapp_cta, label: WhatsApp button, widget: string }
+              - { name: f_consent, label: Consent checkbox text, widget: text }
               - { name: max_upload_note, label: File size note, widget: string }
+              - { name: countries, label: Countries, widget: list }
+              - { name: cities, label: Cities and ports, widget: list }
+              - { name: destination_ports, label: Delivery locations, widget: list }
+              - { name: product_categories, label: Product categories, widget: list }
+              - { name: brand_preferences, label: Brand options, widget: list }
+              - { name: packaging_types, label: Packaging options, widget: list }
+              - { name: incoterms, label: Incoterms, widget: list }
+              - { name: legend_contact, label: "Form section 1 title", widget: string }
+              - { name: legend_product, label: "Form section 2 title", widget: string }
+              - { name: legend_shipping, label: "Form section 3 title", widget: string }
+              - { name: f_company, label: "Field: company", widget: string }
+              - { name: f_person, label: "Field: contact person", widget: string }
+              - { name: f_email, label: "Field: e-mail", widget: string }
+              - { name: f_phone, label: "Field: phone", widget: string }
+              - { name: f_country, label: "Field: country", widget: string }
+              - { name: f_city, label: "Field: city", widget: string }
+              - { name: f_notes, label: "Field: notes", widget: string }
+              - { name: f_notes_ph, label: "Field: notes placeholder", widget: string }
+              - { name: f_category, label: "Field: category", widget: string }
+              - { name: f_category_ph, label: "Field: category placeholder", widget: string }
+              - { name: f_product, label: "Field: product", widget: string }
+              - { name: f_product_ph, label: "Field: product placeholder", widget: string }
+              - { name: f_oem, label: "Field: OEM number", widget: string }
+              - { name: f_oem_ph, label: "Field: OEM placeholder", widget: string }
+              - { name: f_brand, label: "Field: brand", widget: string }
+              - { name: f_packaging, label: "Field: packaging", widget: string }
+              - { name: f_packaging_ph, label: "Field: packaging placeholder", widget: string }
+              - { name: f_qty, label: "Field: quantity", widget: string }
+              - { name: f_qty_ph, label: "Field: quantity placeholder", widget: string }
+              - { name: f_dest_country, label: "Field: destination country", widget: string }
+              - { name: f_dest_port, label: "Field: destination port", widget: string }
+              - { name: f_shipping, label: "Field: shipping method", widget: string }
+              - { name: f_date, label: "Field: delivery date", widget: string }
+              - { name: f_incoterm, label: "Field: incoterm", widget: string }
+              - { name: f_incoterm_ph, label: "Field: incoterm placeholder", widget: string }
+              - { name: f_upload, label: "Field: file upload", widget: string }
+              - { name: f_upload_btn, label: "Field: choose file button", widget: string }
+              - { name: f_upload_none, label: "Field: no file chosen", widget: string }
+              - { name: f_upload_toobig, label: "Field: file too large", widget: string, hint: "%s is replaced by the file name." }
+              - { name: f_upload_many, label: "Field: several files", widget: string, hint: "%n is replaced by the number of files." }
           - name: example
-            label: Example quotation table
+            label: Example quotation
             widget: object
             collapsed: true
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: route, label: Route line, widget: string }
-              - { name: col_description, label: Column 1 heading, widget: string }
-              - { name: col_amount, label: Column 2 heading, widget: string }
+              - { name: title, label: Heading, widget: string }
+              - { name: route, label: Route, widget: string }
+              - { name: col_description, label: "Column: description", widget: string }
+              - { name: col_amount, label: "Column: amount", widget: string }
+              - { name: note, label: Note under the table, widget: text }
+              - { name: cta_label, label: Button, widget: string }
               - name: rows
                 label: Table rows
                 widget: list
@@ -221,73 +234,110 @@ collections:
                 fields:
                   - { name: label, label: Description, widget: string }
                   - { name: amount, label: Amount, widget: string }
-                  - name: style
-                    label: Row style
-                    widget: select
-                    required: false
-                    default: ""
-                    options:
-                      - { label: Normal, value: "" }
-                      - { label: Subtotal, value: is-sub }
-                      - { label: Total (gold), value: is-total }
-                      - { label: Unit price, value: is-unit }
-              - { name: note, label: Note under the table, widget: text }
-              - { name: cta_label, label: Button text, widget: string }
-              - { name: cta_url, label: Button link, widget: string }
+                  - { name: style, label: Emphasis, widget: select, required: false, options: ["", is-sub, is-total, is-unit] }
           - name: brands
-            label: Brand logos
+            label: Brands section
             widget: object
             fields:
-              - { name: title, label: Section title, widget: string }
-              - name: items
-                label: Logos
-                widget: list
-                summary: "{{fields.name}}"
-                fields:
-                  - { name: name, label: Brand name, widget: string }
-                  - { name: logo, label: Logo file, widget: image }
-                  - name: shape
-                    label: Logo shape
-                    widget: select
-                    hint: "Square/round emblem, or a wide wordmark. This controls the display size."
-                    options:
-                      - { label: Square emblem, value: mark }
-                      - { label: Wide wordmark, value: word }
+              - { name: title, label: Heading, widget: string }
+          - name: nav
+            label: Menu labels
+            widget: object
+            collapsed: true
+            fields:
+              - { name: cta_label, label: Quote button, widget: string }
+              - { name: home, label: Home, widget: string }
+              - { name: products, label: Products, widget: string }
+              - { name: how, label: How it works, widget: string }
+              - { name: contact, label: Contact, widget: string }
+              - { name: skip, label: "Skip to content (accessibility)", widget: string }
+              - { name: menu, label: "Menu button (accessibility)", widget: string }
+              - { name: breadcrumb, label: "Breadcrumb (accessibility)", widget: string }
           - name: footer
             label: Footer
             widget: object
             collapsed: true
             fields:
-              - { name: about, label: About paragraph, widget: text }
-              - name: socials
-                label: Social links
-                widget: list
-                collapsed: true
-                summary: "{{fields.label}}"
-                fields:
-                  - { name: icon, label: Network, widget: select, options: [facebook, linkedin, instagram, whatsapp, youtube] }
-                  - { name: label, label: Name, widget: string }
-                  - { name: url, label: Link, widget: string }
-              - name: columns
-                label: Link columns
-                widget: list
-                collapsed: true
-                summary: "{{fields.title}}"
-                fields:
-                  - { name: title, label: Column heading, widget: string }
-                  - name: links
-                    label: Links
-                    widget: list
-                    collapsed: true
-                    fields:
-                      - { name: label, label: Text, widget: string }
-                      - { name: url, label: Link, widget: string }
-              - { name: contact_title, label: Contact column heading, widget: string }
+              - { name: about, label: About text, widget: text }
+              - { name: contact_title, label: "Column: contact", widget: string }
+              - { name: products_title, label: "Column: products", widget: string }
+              - { name: links_title, label: "Column: links", widget: string }
               - { name: copyright, label: Copyright line, widget: string }
+              - { name: back_to_top, label: "Back to top (accessibility)", widget: string }
               - name: legal
                 label: Legal links
                 widget: list
-                collapsed: true
+                summary: "{{fields.label}}"
                 fields:
                   - { name: label, label: Text, widget: string }
-                  - { name: url, label: Link, widget: string }
+                  - { name: url, label: Address, widget: string }
+
+      - name: fr
+        label: Français
+        file: src/_data/i18n/fr.json
+        description: Tous les textes de la page d'accueil française.
+        fields: *locale_fields
+
+  # ---------------------------------------------------------------
+  # The four category pages, both languages side by side.
+  # ---------------------------------------------------------------
+  - name: pages
+    label: Category pages
+    files:
+      - name: categories
+        label: The four categories
+        file: src/_data/categories.json
+        description: >-
+          Text and search-engine settings for the four category pages.
+          Changing a web address breaks any existing link to that page and
+          resets its position in Google, so change one only if you have to.
+        fields:
+          - name: categories
+            label: Categories
+            widget: list
+            summary: "{{fields.key}}"
+            fields:
+              - { name: key, label: Internal code, widget: string, hint: "Do not change — it links the two languages together." }
+              - { name: icon, label: Icon, widget: select, options: [gear, tag, doc, truck] }
+              - { name: image, label: Photo, widget: image }
+              - name: en
+                label: English
+                widget: object
+                fields: &category_fields
+                  - { name: slug, label: Web address, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and hyphens only.'] }
+                  - { name: nav, label: Short name (menus), widget: string }
+                  - { name: preselect, label: Matching form category, widget: string, hint: "Must match one of the product categories in the quote form." }
+                  - { name: card_text, label: Home page card text, widget: string }
+                  - { name: alt, label: Photo description, widget: string }
+                  - { name: meta_title, label: Browser tab title, widget: string, pattern: ['^.{1,60}$', 'Keep this to 60 characters or fewer.'] }
+                  - { name: meta_description, label: Google description, widget: text, pattern: ['^.{1,160}$', 'Keep this to 160 characters or fewer.'] }
+                  - { name: h1, label: Page heading, widget: string }
+                  - { name: lead, label: Introduction, widget: text }
+                  - { name: cta, label: Button text, widget: string }
+                  - name: sections
+                    label: Content blocks
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { name: title, label: Block heading, widget: string }
+                      - { name: body, label: Paragraphs, widget: list, required: false }
+                      - { name: list, label: Bullet points, widget: list, required: false }
+                      - name: steps
+                        label: Numbered steps
+                        widget: list
+                        required: false
+                        summary: "{{fields.title}}"
+                        fields:
+                          - { name: title, label: Step title, widget: string }
+                          - { name: text, label: Step text, widget: text }
+                  - name: faq
+                    label: Questions & answers
+                    widget: list
+                    summary: "{{fields.q}}"
+                    fields:
+                      - { name: q, label: Question, widget: string }
+                      - { name: a, label: Answer, widget: text }
+              - name: fr
+                label: Français
+                widget: object
+                fields: *category_fields

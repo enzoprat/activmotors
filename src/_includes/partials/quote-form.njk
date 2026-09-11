@@ -79,7 +79,10 @@
               <div class="upload" id="upload">
                 <input type="file" id="fileInput" name="files" multiple accept=".xls,.xlsx,.csv,.pdf,.png,.jpg,.jpeg">
                 <span class="upload__btn">{{ t.quote.f_upload_btn }}</span>
-                <span class="upload__name" id="fileName">{{ t.quote.f_upload_none }}</span>
+                <span class="upload__name" id="fileName"
+                      data-none="{{ t.quote.f_upload_none }}"
+                      data-toobig="{{ t.quote.f_upload_toobig }}"
+                      data-many="{{ t.quote.f_upload_many }}">{{ t.quote.f_upload_none }}</span>
               </div>
               <small class="field__note">{{ t.quote.max_upload_note }}</small>
             </div>
@@ -91,7 +94,7 @@
           <span>{{ t.quote.f_consent }}</span>
         </label>
 
-        <button type="submit" class="btn btn--gold btn--block">{{ t.quote.submit_label }}</button>
+        <button type="submit" class="btn btn--gold btn--block" data-sending="{{ t.quote.sending_label }}">{{ t.quote.submit_label }}</button>
 
         <div class="qform__done" id="formDone" hidden>
           <p class="qform__ok">{{ t.quote.success_message }}</p>

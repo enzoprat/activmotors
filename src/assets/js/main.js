@@ -166,44 +166,95 @@
   const fileName  = $('#fileName');
   const uploadBtn = $('.upload__btn');
 
+  // Labels live in the markup so they are translated with the rest of the page.
+  const uploadTxt = (key, fallback) => (fileName && fileName.dataset[key]) || fallback;
+
   if (uploadBtn) uploadBtn.addEventListener('click', () => fileInput.click());
   if (fileInput) {
     fileInput.addEventListener('change', () => {
       const files = Array.from(fileInput.files || []);
-      if (!files.length) { fileName.textContent = 'No file chosen'; return; }
+      if (!files.length) { fileName.textContent = uploadTxt('none', 'No file chosen'); return; }
       const tooBig = files.find((f) => f.size > 10 * 1024 * 1024);
       if (tooBig) {
-        fileName.textContent = `"${tooBig.name}" exceeds 10MB`;
+        fileName.textContent = uploadTxt('toobig', 'File too large').replace('%s', tooBig.name);
         fileInput.value = '';
         return;
       }
-      fileName.textContent = files.length === 1 ? files[0].name : `${files.length} files selected`;
+      fileName.textContent = files.length === 1
+        ? files[0].name
+        : uploadTxt('many', '%n files selected').replace('%n', files.length);
     });
   }
 
   /* ---------- 8. Quote form ---------- */
-  const form   = $('#quoteForm');
-  const formOk = $('#formOk');
+  const form     = $('#quoteForm');
+  const formDone = $('#formDone');
+  const formErr  = $('#formErr');
+  const waSend   = $('#waSend');
+
+  // Mirrors the submitted request back to the client so they can send the same
+  // summary over WhatsApp in one tap. This is deliberately customer-initiated:
+  // an automatic business-initiated message would need Meta's approved-template
+  // flow, which is a separate piece of work.
+  const buildWhatsAppLink = (number, data) => {
+    const lines = [
+      data.get('product') && `Product: ${data.get('product')}`,
+      data.get('qty') && `Quantity: ${data.get('qty')}`,
+      data.get('dest_country') && `Destination: ${data.get('dest_country')}`,
+      data.get('shipping') && `Shipping: ${data.get('shipping')}`,
+      data.get('company') && `Company: ${data.get('company')}`,
+    ].filter(Boolean);
+    const text = ['Quote request — UAE Sourcing', ''].concat(lines).join('\n');
+    return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  };
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      $$('input, select, textarea', form).forEach((f) => f.classList.add('is-touched'));
+      const fields = $$('input, select, textarea', form);
+      fields.forEach((f) => f.classList.add('is-touched'));
 
-      const firstInvalid = $$('input, select, textarea', form).find((f) => !f.checkValidity());
+      const firstInvalid = fields.find((f) => !f.checkValidity());
       if (firstInvalid) {
         firstInvalid.focus();
         firstInvalid.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         return;
       }
 
-      // TODO: replace with a real POST to the back-end / e-mail service
-      formOk.hidden = false;
-      form.reset();
-      fileName.textContent = 'No file chosen';
-      $$('input, select, textarea', form).forEach((f) => f.classList.remove('is-touched'));
-      formOk.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-      setTimeout(() => { formOk.hidden = true; }, 8000);
+      const submitBtn = $('button[type=submit]', form);
+      const restore   = submitBtn ? submitBtn.textContent : '';
+      const data      = new FormData(form);
+      data.append('locale', form.dataset.locale || 'en');
+
+      if (formErr) formErr.hidden = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitBtn.dataset.sending) submitBtn.textContent = submitBtn.dataset.sending;
+      }
+
+      try {
+        const res = await fetch(form.dataset.endpoint, { method: 'POST', body: data });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+
+        if (waSend && form.dataset.wa) waSend.href = buildWhatsAppLink(form.dataset.wa, data);
+        if (formDone) {
+          formDone.hidden = false;
+          formDone.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        }
+        form.reset();
+        if (fileName) fileName.textContent = uploadTxt('none', 'No file chosen');
+        fields.forEach((f) => f.classList.remove('is-touched'));
+      } catch (err) {
+        if (formErr) {
+          formErr.hidden = false;
+          formErr.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = restore;
+        }
+      }
     });
   }
 
@@ -248,16 +299,4 @@
     $('.brands__nav--next').addEventListener('click', () => nudge(1));
   }
 
-  /* ---------- 10. Language switcher ---------- */
-  const langBtn = $('.lang__btn');
-  if (langBtn) {
-    $$('.lang__menu a').forEach((a) => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        $$('.lang__menu a').forEach((x) => x.classList.remove('is-active'));
-        a.classList.add('is-active');
-        langBtn.childNodes[0].nodeValue = a.textContent.trim().slice(0, 2).toUpperCase() + ' ';
-      });
-    });
-  }
 })();
