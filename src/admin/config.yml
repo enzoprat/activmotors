@@ -38,7 +38,7 @@ collections:
               - { name: legal_name, label: Full legal name, widget: string, hint: "Used by Google in search results." }
               - { name: logo_aria, label: Logo description (for screen readers), widget: string }
               - { name: phone, label: Phone number, widget: string, hint: "Spaces are fine — the click-to-call link is built automatically." }
-              - { name: whatsapp_number, label: WhatsApp number, widget: string, hint: "Digits only, with country code and no +. Example: 971501234567" }
+              - { name: whatsapp_number, label: WhatsApp number, widget: string, hint: "Digits only, with country code and no +. Example: 33637721959" }
               - { name: email, label: E-mail address, widget: string }
               - { name: address, label: Office address (displayed), widget: text }
               - { name: street, label: Street line (for Google), widget: string }
