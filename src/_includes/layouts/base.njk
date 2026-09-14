@@ -6,6 +6,7 @@
 <title>{{ metaTitle or t.meta.title }}</title>
 <meta name="description" content="{{ metaDescription or t.meta.description }}">
 
+{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 <link rel="canonical" href="{{ selfUrl | absUrl }}">
 <link rel="alternate" hreflang="en" href="{{ altEn | absUrl }}">
 <link rel="alternate" hreflang="fr" href="{{ altFr | absUrl }}">

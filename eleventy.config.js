@@ -1,13 +1,17 @@
 /**
- * The site is served from a sub-path on GitHub Pages (/activmotors/) but from
- * the root on any real domain. Every internal link therefore goes through the
- * `url` filter, and PATH_PREFIX is set by the deploy workflow.
+ * Defaults describe production — the real domain, served from its root — so a
+ * build with no environment set is correct by default. The GitHub Pages
+ * workflow overrides them, because a project site lives under a sub-path.
+ * Every internal link goes through the `url` filter so the prefix applies.
  */
 import Image from "@11ty/eleventy-img";
 import path from "node:path";
 
-const PATH_PREFIX = process.env.PATH_PREFIX || "/activmotors/";
-const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://enzoprat.github.io").replace(/\/$/, "");
+const PATH_PREFIX = process.env.PATH_PREFIX || "/";
+const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://www.activamotors.com").replace(/\/$/, "");
+// The Pages copy is the same content at another address; letting it be indexed
+// would put it in competition with the real domain.
+const NOINDEX = process.env.NOINDEX === "true";
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -79,6 +83,7 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addGlobalData("origin", SITE_ORIGIN);
+  eleventyConfig.addGlobalData("noindex", NOINDEX);
   eleventyConfig.addGlobalData("buildDate", () => new Date().toISOString().slice(0, 10));
 
   return {

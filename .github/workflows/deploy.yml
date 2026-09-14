@@ -26,10 +26,11 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # GitHub Pages serves this repo from a sub-path; a custom domain would
-          # set PATH_PREFIX to "/" and SITE_ORIGIN to that domain.
+          # This is the preview copy: a project site lives under a sub-path,
+          # and it must not compete with the real domain in search results.
           PATH_PREFIX: /activmotors/
           SITE_ORIGIN: https://enzoprat.github.io
+          NOINDEX: "true"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

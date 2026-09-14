@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "_site",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "header", "key": "accept-language", "value": ".*fr.*" }],
+      "destination": "/fr/",
+      "permanent": false
+    },
+    { "source": "/", "destination": "/en/", "permanent": false }
+  ]
+}
