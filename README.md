@@ -1,26 +1,27 @@
-# UAE Sourcing
+# Activmotors
 
-One-page marketing site with a content manager the client can use herself.
+Bilingual marketing site for an automotive sourcing and export business, with a
+content manager the client uses herself.
 
 - **Site**: Eleventy 3 + Nunjucks, vanilla CSS/JS, no framework.
-- **Content**: everything editable lives in [`src/_data/site.json`](src/_data/site.json).
-- **Admin**: Decap CMS at `/admin`, commits straight to this repo.
+- **Languages**: `/en/` and `/fr/`, with French slugs translated rather than
+  prefixed so the French pages carry French keywords.
+- **Content**: everything editable lives in [`src/_data/`](src/_data) — company
+  details in `site.json`, page copy per language in `i18n/`, the four category
+  pages in `categories.json`, the privacy pages in `legal.json`.
+- **Admin**: Sveltia CMS at `/admin`, committing straight to this repo.
+- **Quote form**: posted to Web3Forms, which mails the request to the client.
 
 ## Local development
 
 ```bash
 npm install
-npm start          # http://localhost:4789
+npm start
 ```
 
-To work on the content manager, run the local proxy in a second terminal —
-no GitHub login is needed in this mode:
-
-```bash
-npm run cms        # file-system proxy on port 8082
-```
-
-Then open http://localhost:4789/admin/.
+Then http://localhost:4789. The content manager is at
+http://localhost:4789/admin/ — Sveltia reads the working copy through the
+browser, so there is no proxy server to start alongside it.
 
 ## Going live
 
@@ -34,9 +35,13 @@ Builds default to production. The Pages workflow overrides `PATH_PREFIX` and
 
 ## Content manager login
 
-The client edits the site at https://www.activamotors.com/admin/. Signing in
-needs a token from GitHub, and getting one needs a client secret, which cannot
-live in a browser — so [`api/auth.js`](api/auth.js) and
+The client edits the site at https://www.activamotors.com/admin/, which runs
+[Sveltia CMS](https://github.com/sveltia/sveltia-cms) — a rewrite of
+Netlify/Decap CMS, same configuration format, actively maintained. Its
+interface follows the browser's language, so the client gets it in French.
+
+Signing in needs a token from GitHub, and getting one needs a client secret,
+which cannot live in a browser — so [`api/auth.js`](api/auth.js) and
 [`api/callback.js`](api/callback.js) do that exchange on Vercel.
 
 Two things have to be set up once.

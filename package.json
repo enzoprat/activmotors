@@ -1,13 +1,12 @@
 {
-  "name": "uae-sourcing",
+  "name": "activmotors",
   "version": "1.0.0",
-  "description": "UAE Sourcing — export partner landing page",
+  "description": "Activmotors — bilingual automotive sourcing and export site",
   "type": "module",
   "private": true,
   "scripts": {
     "start": "eleventy --serve --port=4789",
-    "build": "eleventy",
-    "cms": "PORT=8082 decap-server"
+    "build": "eleventy"
   },
   "repository": {
     "type": "git",
@@ -16,7 +15,6 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
-    "@11ty/eleventy-img": "^7.0.0",
-    "decap-server": "^3.10.0"
+    "@11ty/eleventy-img": "^7.0.0"
   }
 }

@@ -6,17 +6,23 @@ backend:
   # so this is simply the site's own origin — no trailing slash, no path.
   base_url: https://www.activamotors.com
 
-# Local editing: run `npm run cms` and `npm start` in two terminals, then open
-# http://localhost:4789/admin/ — no GitHub login needed. Port 8082 because 8081
-# (decap-server's default) is often already taken.
-local_backend:
-  url: http://localhost:8082/api/v1
+# Local editing: run `npm start` and open http://localhost:4789/admin/, then
+# pick the local folder when prompted. Sveltia talks to the file system through
+# the browser, so there is no proxy server to run.
 
 media_folder: src/assets/img/uploads
 public_folder: /assets/img/uploads
 
 publish_mode: simple
-locale: en
+
+# Sveltia writes empty optional fields by default; Decap omitted them. Keeping
+# them out leaves the data files as they are today.
+omit_empty_optional_fields: true
+
+# The sign-in screen is light grey, where the silver lettering of the cut-out
+# washes out. The original, with its own navy ground, reads better there.
+logo:
+  src: /assets/img/activmotors-logo.jpg
 
 # No side-by-side preview: these collections are settings, and the default
 # preview renders a raw dump of every field. The live site is one click away
