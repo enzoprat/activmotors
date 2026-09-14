@@ -4,10 +4,30 @@
   "redirects": [
     {
       "source": "/",
-      "has": [{ "type": "header", "key": "accept-language", "value": ".*fr.*" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": ".*fr.*"
+        }
+      ],
       "destination": "/fr/",
       "permanent": false
     },
-    { "source": "/", "destination": "/en/", "permanent": false }
+    {
+      "source": "/",
+      "destination": "/en/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/auth",
+      "destination": "/api/auth"
+    },
+    {
+      "source": "/callback",
+      "destination": "/api/callback"
+    }
   ]
 }

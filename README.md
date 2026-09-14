@@ -24,55 +24,46 @@ Then open http://localhost:4789/admin/.
 
 ## Going live
 
-The site is already deployed: pushing to `main` runs
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds
-with Eleventy and publishes to GitHub Pages at
-https://enzoprat.github.io/activmotors/.
+The site is live at https://www.activamotors.com, deployed by Vercel on every
+push to `main`. A second copy is published to GitHub Pages by
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) as a preview;
+it is marked `noindex` so it does not compete with the real domain in search.
 
-What is **not** set up yet is the login for `/admin` on the live site. GitHub
-Pages cannot run server code, so the OAuth exchange needs a small worker
-elsewhere. Three steps, once.
+Builds default to production. The Pages workflow overrides `PATH_PREFIX` and
+`SITE_ORIGIN` because a project site lives under a sub-path.
 
-### 1. OAuth worker
+## Content manager login
 
-Deploy [`sveltia/sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth)
-to Cloudflare Workers (one click from its README). Despite the name it
-implements the same handshake Decap expects, and its router accepts Decap's
-`/auth` and `/callback` paths. Note the worker URL, then come back for the
-variables in step 3.
+The client edits the site at https://www.activamotors.com/admin/. Signing in
+needs a token from GitHub, and getting one needs a client secret, which cannot
+live in a browser — so [`api/auth.js`](api/auth.js) and
+[`api/callback.js`](api/callback.js) do that exchange on Vercel.
 
-### 2. GitHub OAuth App
+Two things have to be set up once.
+
+### 1. A GitHub OAuth App
 
 1. https://github.com/settings/developers → **New OAuth App**.
-   It must be a classic OAuth App — a GitHub App will not work here.
-2. Homepage URL: `https://enzoprat.github.io/activmotors/`
-3. **Authorization callback URL**: `https://<worker-url>/callback`
-   — the worker from step 1, *not* the site.
-4. Keep the Client ID and generate a Client Secret.
+   It must be a classic OAuth App; a GitHub App does not work here.
+2. Application name: anything the client will recognise.
+3. Homepage URL: `https://www.activamotors.com`
+4. **Authorization callback URL**: `https://www.activamotors.com/callback`
+5. Keep the Client ID, then generate a Client Secret.
 
-### 3. Worker variables
+### 2. Two environment variables on Vercel
 
-| Variable | Value |
+Project → Settings → Environment Variables:
+
+| Name | Value |
 | --- | --- |
-| `GITHUB_CLIENT_ID` | from step 2 |
-| `GITHUB_CLIENT_SECRET` | from step 2 — tick *Encrypt* |
-| `ALLOWED_DOMAINS` | `enzoprat.github.io` |
+| `GITHUB_CLIENT_ID` | from step 1 |
+| `GITHUB_CLIENT_SECRET` | from step 1 |
 
-`ALLOWED_DOMAINS` takes bare hostnames, comma-separated, with no `https://`
-(a scheme here gives a blank login popup). Add the custom domain when there
-is one.
+Redeploy after adding them — Vercel only picks up new variables on a fresh
+build. Visiting `/auth` says plainly if the id is missing.
 
-### 4. Point the CMS at the worker
-
-In [`src/admin/config.yml`](src/admin/config.yml), set `base_url` to the worker
-origin — no trailing slash, no path, or the login popup fails silently:
-
-```yaml
-base_url: https://activmotors-auth.your-subdomain.workers.dev
-```
-
-Finally, invite the client to the repo (Settings → Collaborators) with **Write**
-access. She needs a free GitHub account; after that, logging in is one click.
+Finally, invite the client to the repository (Settings → Collaborators) with
+**Write** access. They need a free GitHub account; after that it is one click.
 
 ## How editing works
 
