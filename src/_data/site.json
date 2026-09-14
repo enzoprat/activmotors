@@ -11,7 +11,7 @@
     "logo_aria": "Activmotors — Automotive Sourcing & Export Partner",
     "phone": "+33 6 37 72 19 59",
     "whatsapp_number": "33637721959",
-    "email": "info@uaesourcing.com",
+    "email": "Anthony.ribeiro@activamotors.com",
     "address": "Office 1205, The Tower Plaza Hotel, Sheikh Zayed Road, Dubai, UAE",
     "street": "Sheikh Zayed Road, Office 1205, The Tower Plaza Hotel",
     "city": "Dubai",
@@ -96,6 +96,6 @@
   "hero_image": "/assets/img/hero.svg",
   "og_image": "/assets/img/activmotors-logo.jpg",
   "favicon": "/assets/img/favicon.svg",
-  "web3forms_key": "",
+  "web3forms_key": "edca9b9f-4880-49a4-8c1a-444bfaa69d09",
   "logo_image": "/assets/img/activmotors-logo.jpg"
 }
