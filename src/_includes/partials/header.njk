@@ -20,16 +20,9 @@
 
 <header class="header" id="header">
   <div class="container header__inner">
-    <a href="{{ homeUrl | url }}" class="logo" aria-label="{{ site.company.logo_aria }}">
-      <span class="logo__mark">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M4 30c8.5-9.5 18-15.5 29-18.5l-4.5 9.5 15-3.5-10 7.5 6 1.5-14.5 4.5 3 6.5C18.5 34 10.5 31.5 4 30z" fill="currentColor"/>
-        </svg>
-      </span>
-      <span class="logo__txt">
-        <strong>{{ site.company.name | accentLetter(site.company.logo_accent) | safe }}</strong>
-        <em>{{ site.company.tagline }}</em>
-      </span>
+    {#- The header is navy now, which is the ground this logo was drawn for. -#}
+    <a href="{{ homeUrl | url }}" class="header__logo" aria-label="{{ site.company.logo_aria }}">
+      {% picture site.logo_image, site.company.logo_aria, "220px", { eager: true } %}
     </a>
 
     <nav class="nav" id="nav" aria-label="{{ t.nav.products }}">
