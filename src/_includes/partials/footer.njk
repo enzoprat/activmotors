@@ -1,14 +1,11 @@
 <footer class="footer" id="contact">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <a href="{{ homeUrl | url }}" class="logo logo--light">
-        <span class="logo__mark">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M6 14 24 4l18 10v20L24 44 6 34z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="logo__txt"><strong>{{ site.company.name }}</strong><em>{{ site.company.tagline }}</em></span>
+      {#- The supplied logo is a JPEG with its navy background baked in, so it
+          only works on a dark surface. Here it is framed as an image rather
+          than pretending it is transparent. -#}
+      <a href="{{ homeUrl | url }}" class="footer__logo" aria-label="{{ site.company.logo_aria }}">
+        {% picture site.logo_image, site.company.logo_aria, "(max-width:1024px) 60vw, 230px" %}
       </a>
       <p>{{ t.footer.about }}</p>
       <ul class="socials">

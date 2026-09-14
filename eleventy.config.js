@@ -68,6 +68,16 @@ export default function (eleventyConfig) {
     })
   );
 
+  // The wordmark picks out one letter in gold. Keeping the letter in data
+  // rather than hardcoding an index means a future rename does not break it.
+  eleventyConfig.addFilter("accentLetter", (name, letter) => {
+    const s = String(name);
+    if (!letter) return s;
+    const i = s.indexOf(letter);
+    if (i < 0) return s;
+    return s.slice(0, i) + '<i class=\"logo__accent\">' + s[i] + '</i>' + s.slice(i + 1);
+  });
+
   eleventyConfig.addGlobalData("origin", SITE_ORIGIN);
   eleventyConfig.addGlobalData("buildDate", () => new Date().toISOString().slice(0, 10));
 

@@ -5,10 +5,10 @@
   ],
   "default_locale": "en",
   "company": {
-    "name": "UAE SOURCING",
-    "tagline": "EXPORT PARTNER",
-    "legal_name": "UAE Sourcing Export Partner",
-    "logo_aria": "UAE Sourcing — Export Partner",
+    "name": "ACTIVMOTORS",
+    "tagline": "AUTOMOTIVE SOURCING & EXPORT PARTNER",
+    "legal_name": "Activmotors",
+    "logo_aria": "Activmotors — Automotive Sourcing & Export Partner",
     "phone": "+33 6 37 72 19 59",
     "whatsapp_number": "33637721959",
     "email": "info@uaesourcing.com",
@@ -16,7 +16,8 @@
     "street": "Sheikh Zayed Road, Office 1205, The Tower Plaza Hotel",
     "city": "Dubai",
     "country": "AE",
-    "hours": "Mon – Sat: 9:00 AM – 6:00 PM"
+    "hours": "Mon – Sat: 9:00 AM – 6:00 PM",
+    "logo_accent": "V"
   },
   "socials": [
     {
@@ -93,7 +94,8 @@
     }
   ],
   "hero_image": "/assets/img/hero.svg",
-  "og_image": "/assets/img/hero.svg",
+  "og_image": "/assets/img/activmotors-logo.jpg",
   "favicon": "/assets/img/favicon.svg",
-  "web3forms_key": ""
+  "web3forms_key": "",
+  "logo_image": "/assets/img/activmotors-logo.jpg"
 }

@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- Navy tile with the gold V the wordmark picks out, over the motion dart. -->
   <rect width="48" height="48" rx="9" fill="#0d2b4c"/>
-  <g fill="none" stroke="#f5a623" stroke-width="3" stroke-linejoin="round">
-    <path d="M9 15 24 7l15 8v18l-15 8-15-8z"/>
-  </g>
-  <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="#f5a623"/>
+  <path d="M5 31c7.5-8 15.5-13 25-15.5l-3.5 7.5 12-2.5-8 6 4.5 1.2-11.5 3.6 2.4 5.2C17 34.4 10.6 32.3 5 31z" fill="#123a63"/>
+  <path d="M13 13h8.2l6.3 16.4L33.8 13H42L30.6 40h-6.2z" fill="#f5a623"/>
 </svg>

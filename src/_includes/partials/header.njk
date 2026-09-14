@@ -23,12 +23,11 @@
     <a href="{{ homeUrl | url }}" class="logo" aria-label="{{ site.company.logo_aria }}">
       <span class="logo__mark">
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M6 14 24 4l18 10v20L24 44 6 34z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M17 19h14v4h-9v3h8v4h-8v3h9v4H17z" fill="currentColor"/>
+          <path d="M4 30c8.5-9.5 18-15.5 29-18.5l-4.5 9.5 15-3.5-10 7.5 6 1.5-14.5 4.5 3 6.5C18.5 34 10.5 31.5 4 30z" fill="currentColor"/>
         </svg>
       </span>
       <span class="logo__txt">
-        <strong>{{ site.company.name }}</strong>
+        <strong>{{ site.company.name | accentLetter(site.company.logo_accent) | safe }}</strong>
         <em>{{ site.company.tagline }}</em>
       </span>
     </a>
