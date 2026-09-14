@@ -18,6 +18,12 @@ public_folder: /assets/img/uploads
 publish_mode: simple
 locale: en
 
+# No side-by-side preview: these collections are settings, and the default
+# preview renders a raw dump of every field. The live site is one click away
+# from the editor instead.
+editor:
+  preview: false
+
 collections:
   # ---------------------------------------------------------------
   # Anything that is the same in both languages.
