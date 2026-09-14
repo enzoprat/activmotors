@@ -49,9 +49,12 @@ export default function (eleventyConfig) {
    */
   eleventyConfig.addAsyncShortcode("picture", async function (src, alt, sizes, opts = {}) {
     const file = path.join("src", src.replace(/^\//, ""));
+    // A transparent source needs a PNG fallback: JPEG has no alpha channel and
+    // would fill the cut-out with solid black.
+    const transparent = /\.png$/i.test(file);
     const metadata = await Image(file, {
       widths: [320, 640, 960, 1206],
-      formats: ["avif", "webp", "jpeg"],
+      formats: ["avif", "webp", transparent ? "png" : "jpeg"],
       outputDir: "_site/assets/img/optimised/",
       urlPath: PATH_PREFIX.replace(/\/$/, "") + "/assets/img/optimised/",
       sharpJpegOptions: { quality: 78, progressive: true },

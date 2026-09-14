@@ -267,7 +267,34 @@
     });
   }
 
-  /* ---------- 8. Brands carousel (auto-scroll + arrows) ---------- */
+  /* ---------- 8. Language menu ---------- */
+  // CSS :hover opens this on pointer devices, but touch has no hover, which
+  // left the language unreachable on a phone. The links themselves are real
+  // URLs and must keep working, so only the button is intercepted.
+  const lang = $('.lang');
+  const langBtn = $('.lang__btn');
+
+  if (lang && langBtn) {
+    const setOpen = (open) => {
+      lang.classList.toggle('is-open', open);
+      langBtn.setAttribute('aria-expanded', String(open));
+    };
+
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!lang.classList.contains('is-open'));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!lang.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
+
+  /* ---------- 9. Brands carousel (auto-scroll + arrows) ---------- */
   const track    = $('#brandsTrack');
   const viewport = $('#brandsViewport');
 

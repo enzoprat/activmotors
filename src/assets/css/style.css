@@ -94,7 +94,7 @@ input,select,textarea{font:inherit;color:inherit}
 /* =========================================================
    TOP BAR
    ========================================================= */
-.topbar{background:var(--navy-900);color:#c3d2e2;font-size:12px}
+.topbar{background:var(--navy-900);color:#c3d2e2;font-size:12px;position:relative;z-index:160}
 .topbar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:38px}
 .topbar__left,.topbar__right{display:flex;align-items:center;gap:26px}
 .topbar__left li,.topbar__right li{display:flex;align-items:center;gap:7px}
@@ -109,7 +109,9 @@ input,select,textarea{font:inherit;color:inherit}
   border-radius:8px;box-shadow:var(--shadow-md);padding:6px;overflow:hidden;
   opacity:0;visibility:hidden;transform:translateY(6px);transition:.22s var(--ease);z-index:120;
 }
-.lang:hover .lang__menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lang:hover .lang__menu,
+.lang.is-open .lang__menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lang__btn[aria-expanded="true"]{color:var(--gold)}
 .lang__menu a{display:block;padding:8px 12px;border-radius:5px;font-size:13px}
 .lang__menu a:hover{background:var(--bg-tint);color:var(--navy-800)}
 .lang__menu a.is-active{color:var(--gold-dark);font-weight:600}
@@ -411,10 +413,7 @@ input,select,textarea{font:inherit;color:inherit}
 }
 .footer__logo{display:block;max-width:230px}
 .footer__logo picture{display:block}
-.footer__logo img{
-  width:100%;border-radius:var(--radius);
-  border:1px solid rgba(255,255,255,.1);
-}
+.footer__logo img{width:100%}
 .footer__brand p{margin:16px 0 18px;line-height:1.7;max-width:280px}
 .footer__col h3{
   font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:16px;

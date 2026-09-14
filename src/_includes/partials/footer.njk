@@ -1,9 +1,10 @@
 <footer class="footer" id="contact">
   <div class="container footer__grid">
     <div class="footer__brand">
-      {#- The supplied logo is a JPEG with its navy background baked in, so it
-          only works on a dark surface. Here it is framed as an image rather
-          than pretending it is transparent. -#}
+      {#- Cut out from the supplied JPEG using luminance as the matte, which
+          suits artwork that glows against a dark ground. It composites cleanly
+          here; it stays off the white header, where silver lettering would
+          simply vanish. -#}
       <a href="{{ homeUrl | url }}" class="footer__logo" aria-label="{{ site.company.logo_aria }}">
         {% picture site.logo_image, site.company.logo_aria, "(max-width:1024px) 60vw, 230px" %}
       </a>
