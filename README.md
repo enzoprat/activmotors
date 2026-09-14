@@ -27,7 +27,7 @@ Then open http://localhost:4789/admin/.
 The site is already deployed: pushing to `main` runs
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds
 with Eleventy and publishes to GitHub Pages at
-https://enzoprat.github.io/uaesourcing/.
+https://enzoprat.github.io/activmotors/.
 
 What is **not** set up yet is the login for `/admin` on the live site. GitHub
 Pages cannot run server code, so the OAuth exchange needs a small worker
@@ -45,7 +45,7 @@ variables in step 3.
 
 1. https://github.com/settings/developers → **New OAuth App**.
    It must be a classic OAuth App — a GitHub App will not work here.
-2. Homepage URL: `https://enzoprat.github.io/uaesourcing/`
+2. Homepage URL: `https://enzoprat.github.io/activmotors/`
 3. **Authorization callback URL**: `https://<worker-url>/callback`
    — the worker from step 1, *not* the site.
 4. Keep the Client ID and generate a Client Secret.
@@ -68,7 +68,7 @@ In [`src/admin/config.yml`](src/admin/config.yml), set `base_url` to the worker
 origin — no trailing slash, no path, or the login popup fails silently:
 
 ```yaml
-base_url: https://uaesourcing-auth.your-subdomain.workers.dev
+base_url: https://activmotors-auth.your-subdomain.workers.dev
 ```
 
 Finally, invite the client to the repo (Settings → Collaborators) with **Write**

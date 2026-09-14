@@ -1,12 +1,12 @@
 /**
- * The site is served from a sub-path on GitHub Pages (/uaesourcing/) but from
+ * The site is served from a sub-path on GitHub Pages (/activmotors/) but from
  * the root on any real domain. Every internal link therefore goes through the
  * `url` filter, and PATH_PREFIX is set by the deploy workflow.
  */
 import Image from "@11ty/eleventy-img";
 import path from "node:path";
 
-const PATH_PREFIX = process.env.PATH_PREFIX || "/uaesourcing/";
+const PATH_PREFIX = process.env.PATH_PREFIX || "/activmotors/";
 const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://enzoprat.github.io").replace(/\/$/, "");
 
 export default function (eleventyConfig) {

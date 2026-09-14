@@ -28,7 +28,7 @@ jobs:
         env:
           # GitHub Pages serves this repo from a sub-path; a custom domain would
           # set PATH_PREFIX to "/" and SITE_ORIGIN to that domain.
-          PATH_PREFIX: /uaesourcing/
+          PATH_PREFIX: /activmotors/
           SITE_ORIGIN: https://enzoprat.github.io
       - uses: actions/upload-pages-artifact@v3
         with:

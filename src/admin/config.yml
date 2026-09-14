@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: enzoprat/uaesourcing
+  repo: enzoprat/activmotors
   branch: main
   # Origin of the OAuth worker only — no trailing slash, no path.
-  base_url: https://uaesourcing-auth.YOUR-SUBDOMAIN.workers.dev
+  base_url: https://activmotors-auth.YOUR-SUBDOMAIN.workers.dev
 
 # Local editing: run `npm run cms` and `npm start` in two terminals, then open
 # http://localhost:4789/admin/ — no GitHub login needed. Port 8082 because 8081
