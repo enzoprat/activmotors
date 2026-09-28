@@ -267,7 +267,48 @@
     });
   }
 
-  /* ---------- 8. Language menu ---------- */
+  /* ---------- 8. Packaging adapts to the product category ---------- */
+  // Drums and pallets mean nothing for a car, so when the visitor picks the
+  // vehicles category the same field asks how the vehicle should travel.
+  const categoryField = form && form.elements.category;
+  const packagingField = $('#packagingField');
+
+  if (categoryField && packagingField) {
+    const packaging = $('select', packagingField);
+    const caption = $('span', packagingField);
+    const vehicleCategory = form.dataset.vehicleCategory;
+
+    const readList = (value) => {
+      try {
+        const parsed = JSON.parse(value || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
+      }
+    };
+
+    const applyCategory = () => {
+      const isVehicle = !!vehicleCategory && categoryField.value === vehicleCategory;
+      const options = readList(isVehicle ? packaging.dataset.optsVehicle : packaging.dataset.optsGoods);
+      const placeholder = isVehicle ? packaging.dataset.phVehicle : packaging.dataset.phGoods;
+      const label = isVehicle ? caption.dataset.labelVehicle : caption.dataset.labelGoods;
+
+      // Keep the choice when switching between two goods categories, which
+      // share the same options; only a real change of list clears it.
+      const previous = packaging.value;
+      caption.textContent = label;
+      packaging.innerHTML = '';
+      packaging.appendChild(new Option(placeholder, ''));
+      options.forEach((o) => packaging.appendChild(new Option(o, o)));
+      packaging.value = options.indexOf(previous) > -1 ? previous : '';
+      packagingField.classList.toggle('is-vehicle', isVehicle);
+    };
+
+    categoryField.addEventListener('change', applyCategory);
+    applyCategory();
+  }
+
+  /* ---------- 9. Language menu ---------- */
   // CSS :hover opens this on pointer devices, but touch has no hover, which
   // left the language unreachable on a phone. The links themselves are real
   // URLs and must keep working, so only the button is intercepted.
@@ -294,7 +335,7 @@
     });
   }
 
-  /* ---------- 9. Brands carousel (auto-scroll + arrows) ---------- */
+  /* ---------- 10. Brands carousel (auto-scroll + arrows) ---------- */
   const track    = $('#brandsTrack');
   const viewport = $('#brandsViewport');
 

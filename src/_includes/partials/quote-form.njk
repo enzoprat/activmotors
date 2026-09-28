@@ -9,6 +9,7 @@
             action="https://api.web3forms.com/submit" method="POST"
             data-locale="{{ locale }}"
             data-wa="{{ site.company.whatsapp_number }}"
+            data-vehicle-category="{{ t.quote.vehicle_category }}"
             data-wa-labels='{{ {
               "title": t.quote.wa_title, "product": t.quote.wa_product,
               "qty": t.quote.wa_qty, "dest": t.quote.wa_dest,
@@ -31,10 +32,16 @@
             <label class="field"><span>{{ t.quote.f_phone }} <i>*</i></span><input type="tel" name="phone" required></label>
             <div class="field-row">
               <label class="field"><span>{{ t.quote.f_country }} <i>*</i></span>
-                <select name="country" required>{% for c in t.quote.countries %}<option>{{ c }}</option>{% endfor %}</select>
+                <select name="country" required>
+                  {%- for g in t.quote.country_groups %}
+                  <optgroup label="{{ g.label }}">
+                    {%- for c in g.items %}<option>{{ c }}</option>{% endfor %}
+                  </optgroup>
+                  {%- endfor %}
+                </select>
               </label>
               <label class="field"><span>{{ t.quote.f_city }} <i>*</i></span>
-                <select name="city" required>{% for c in t.quote.cities %}<option>{{ c }}</option>{% endfor %}</select>
+                <input type="text" name="city" placeholder="{{ t.quote.f_city_ph }}" required>
               </label>
             </div>
             <label class="field"><span>{{ t.quote.f_notes }}</span>
@@ -55,8 +62,19 @@
             <label class="field"><span>{{ t.quote.f_brand }}</span>
               <select name="brand">{% for b in t.quote.brand_preferences %}<option>{{ b }}</option>{% endfor %}</select>
             </label>
-            <label class="field"><span>{{ t.quote.f_packaging }}</span>
-              <select name="packaging"><option value="">{{ t.quote.f_packaging_ph }}</option>{% for p in t.quote.packaging_types %}<option>{{ p }}</option>{% endfor %}</select>
+            {#- Packaging for goods; for vehicles the same slot asks how the
+                vehicle travels instead. Both sets are rendered and the script
+                shows whichever matches the chosen category. -#}
+            <label class="field" id="packagingField">
+              <span data-label-goods="{{ t.quote.f_packaging }}" data-label-vehicle="{{ t.quote.f_vehicle_shipping }}">{{ t.quote.f_packaging }}</span>
+              <select name="packaging"
+                      data-ph-goods="{{ t.quote.f_packaging_ph }}"
+                      data-ph-vehicle="{{ t.quote.f_vehicle_shipping_ph }}"
+                      data-opts-goods='{{ t.quote.packaging_types | jsonld | safe }}'
+                      data-opts-vehicle='{{ t.quote.vehicle_shipping_modes | jsonld | safe }}'>
+                <option value="">{{ t.quote.f_packaging_ph }}</option>
+                {%- for p in t.quote.packaging_types %}<option>{{ p }}</option>{% endfor %}
+              </select>
             </label>
             <label class="field"><span>{{ t.quote.f_qty }} <i>*</i></span><input type="text" name="qty" placeholder="{{ t.quote.f_qty_ph }}" required></label>
           </fieldset>
@@ -64,10 +82,16 @@
           <fieldset class="qcol">
             <legend>{{ t.quote.legend_shipping }}</legend>
             <label class="field"><span>{{ t.quote.f_dest_country }} <i>*</i></span>
-              <select name="dest_country" required>{% for c in t.quote.countries %}<option>{{ c }}</option>{% endfor %}</select>
+              <select name="dest_country" required>
+                  {%- for g in t.quote.country_groups %}
+                  <optgroup label="{{ g.label }}">
+                    {%- for c in g.items %}<option>{{ c }}</option>{% endfor %}
+                  </optgroup>
+                  {%- endfor %}
+                </select>
             </label>
             <label class="field"><span>{{ t.quote.f_dest_port }} <i>*</i></span>
-              <select name="dest_port" required>{% for p in t.quote.destination_ports %}<option>{{ p }}</option>{% endfor %}</select>
+              <input type="text" name="dest_port" placeholder="{{ t.quote.f_dest_port_ph }}" required>
             </label>
 
             <div class="field">

@@ -205,10 +205,22 @@ collections:
               - { name: f_consent, label: Consent checkbox text, widget: text }
               - { name: files_note, label: "Note: where to send files", widget: text }
               - { name: email_subject, label: Subject of the e-mail you receive, widget: string }
-              - { name: countries, label: Countries, widget: list }
-              - { name: cities, label: Cities and ports, widget: list }
-              - { name: destination_ports, label: Delivery locations, widget: list }
+              - name: country_groups
+                label: Countries offered
+                widget: list
+                collapsed: true
+                summary: "{{fields.label}}"
+                hint: "Grouped by region. Each group becomes a heading in the drop-down."
+                fields:
+                  - { name: label, label: Region, widget: string }
+                  - { name: items, label: Countries, widget: list }
               - { name: product_categories, label: Product categories, widget: list }
+              - { name: vehicle_category, label: "Category that switches to shipping mode", widget: string, hint: "Must match one of the product categories exactly." }
+              - { name: vehicle_shipping_modes, label: "Shipping modes (vehicles)", widget: list }
+              - { name: f_vehicle_shipping, label: "Field: shipping mode", widget: string }
+              - { name: f_vehicle_shipping_ph, label: "Field: shipping mode placeholder", widget: string }
+              - { name: f_city_ph, label: "Field: city placeholder", widget: string }
+              - { name: f_dest_port_ph, label: "Field: delivery location placeholder", widget: string }
               - { name: brand_preferences, label: Brand options, widget: list }
               - { name: packaging_types, label: Packaging options, widget: list }
               - { name: incoterms, label: Incoterms, widget: list }
