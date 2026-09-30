@@ -10,7 +10,8 @@ content manager the client uses herself.
   details in `site.json`, page copy per language in `i18n/`, the four category
   pages in `categories.json`, the privacy pages in `legal.json`.
 - **Admin**: Sveltia CMS at `/admin`, committing straight to this repo.
-- **Quote form**: posted to Web3Forms, which mails the request to the client.
+- **Quote form**: posted to [`api/quote.js`](api/quote.js), which mails the request to
+  the client and an acknowledgement to whoever sent it.
 
 ## Local development
 
@@ -32,6 +33,34 @@ it is marked `noindex` so it does not compete with the real domain in search.
 
 Builds default to production. The Pages workflow overrides `PATH_PREFIX` and
 `SITE_ORIGIN` because a project site lives under a sub-path.
+
+## Quote e-mails
+
+[`api/quote.js`](api/quote.js) receives the form and sends two messages through
+[Resend](https://resend.com): the request to Activmotors, with the sender set as
+reply-to, and an acknowledgement to the sender in the language they used. The
+wording of both lives in `src/_data/i18n/*.json` under `email`, so it is
+editable from the content manager.
+
+If the acknowledgement fails, the request is still delivered — a lead is worth
+more than a courtesy.
+
+### Setting it up
+
+1. Create a free account at https://resend.com (3,000 mails a month).
+2. Add `activamotors.com` as a domain and publish the DNS records it gives you
+   at IONOS. Sending from the domain will not work until they verify.
+3. Create an API key.
+4. Set three variables on Vercel, in the Production environment:
+
+| Name | Value |
+| --- | --- |
+| `RESEND_API_KEY` | from step 3 |
+| `MAIL_FROM` | e.g. `Activmotors <contact@activamotors.com>`, on the verified domain |
+| `MAIL_TO` | where quote requests should land |
+
+Redeploy afterwards; Vercel only picks up new variables on a fresh build.
+Posting to `/api/quote` without the key returns a clear message saying so.
 
 ## Content manager login
 

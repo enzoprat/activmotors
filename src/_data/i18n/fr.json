@@ -215,7 +215,6 @@
       "DDP"
     ],
     "files_note": "Vous avez une liste de pièces, des photos ou des spécifications ? Envoyez-les sur WhatsApp ou par e-mail après avoir validé ce formulaire, nous les rattacherons à votre demande.",
-    "email_subject": "Nouvelle demande de devis depuis le site",
     "wa_title": "Demande de devis — Activmotors",
     "wa_product": "Produit",
     "wa_qty": "Quantité",
@@ -390,5 +389,21 @@
         "url": "/fr/politique-de-confidentialite/"
       }
     ]
+  },
+  "email": {
+    "confirm_subject": "Votre demande a bien été reçue — Activmotors",
+    "greeting": "Bonjour",
+    "body": [
+      "Merci pour votre demande auprès d’Activmotors.",
+      "Nous l’avons bien reçue et revenons vers vous rapidement avec les informations et tarifs disponibles.",
+      "À très bientôt,"
+    ],
+    "signature": "Anthony",
+    "company": "Activmotors",
+    "tagline": "ALL VEHICLES. ALL PARTS. ONE BRAND.",
+    "recap_title": "Récapitulatif de votre demande",
+    "notify_subject": "Nouvelle demande de devis",
+    "notify_intro": "Demande reçue depuis le site. Répondez directement à ce message pour joindre le client.",
+    "footer_note": "Cet e-mail confirme la réception de votre demande. Vous pouvez y répondre pour nous transmettre des précisions, des photos ou une liste de pièces."
   }
 }

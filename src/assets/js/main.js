@@ -231,12 +231,12 @@
       }
 
       try {
-        // Web3Forms answers 200 with {success:false} on a rejected submission,
+        // The endpoint answers 200 with {success:false} on a refused request,
         // so the status code alone is not enough to call it a success.
         const res  = await fetch(form.action, {
           method: 'POST',
-          body: data,
-          headers: { Accept: 'application/json' },
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(Object.fromEntries(data)),
         });
         const body = await res.json().catch(() => ({}));
         if (!res.ok || body.success === false) throw new Error(body.message || 'HTTP ' + res.status);

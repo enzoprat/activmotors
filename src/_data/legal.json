@@ -1,6 +1,6 @@
 {
   "privacy": {
-    "updated": "2026-09-11",
+    "updated": "2026-09-30",
     "en": {
       "slug": "privacy-policy",
       "nav": "Privacy Policy",
@@ -34,8 +34,8 @@
         {
           "title": "Who else sees it",
           "body": [
-            "Web3Forms delivers the form to our inbox. Your submission passes through their servers and they hold a copy for a limited period. See web3forms.com for their own privacy terms.",
-            "GitHub hosts this website. Like any web host, its servers record the IP address and browser of every visitor in technical logs.",
+            "Resend carries our e-mails. Your request and our reply to it pass through their servers so that they can be delivered. See resend.com for their own privacy terms.",
+            "Vercel hosts this website and runs the code that handles the form. Like any web host, its servers record the IP address and browser of every visitor in technical logs.",
             "Google supplies the typefaces used here. Loading them discloses your IP address to Google.",
             "If you choose to contact us over WhatsApp, that conversation is handled by WhatsApp under its own terms. Using WhatsApp is always your choice; the form works without it.",
             "Where a request requires it, we share the necessary product and delivery details with the suppliers and freight forwarders needed to quote and ship your order. We share only what those parties need."
@@ -44,7 +44,7 @@
         {
           "title": "How long we keep it",
           "body": [
-            "Quote requests are kept for as long as needed to handle the enquiry and any business that follows from it, and in order to meet accounting and customs record-keeping obligations.",
+            "Quote requests are kept in our mailbox for as long as needed to handle the enquiry and any business that follows from it, and in order to meet accounting and customs record-keeping obligations.",
             "If a request leads to nothing, we delete it once it is clearly no longer live. You can ask us to delete it sooner at any time."
           ]
         },
@@ -103,8 +103,8 @@
         {
           "title": "Qui d'autre y a accès",
           "body": [
-            "Web3Forms achemine le formulaire jusqu'à notre boîte mail. Votre envoi transite par leurs serveurs et ils en conservent une copie pendant une durée limitée. Consultez web3forms.com pour leurs propres conditions.",
-            "GitHub héberge ce site. Comme tout hébergeur, ses serveurs enregistrent dans des journaux techniques l'adresse IP et le navigateur de chaque visiteur.",
+            "Resend achemine nos courriels. Votre demande et la réponse que nous y apportons transitent par leurs serveurs afin d'être distribuées. Consultez resend.com pour leurs propres conditions.",
+            "Vercel héberge ce site et exécute le code qui traite le formulaire. Comme tout hébergeur, ses serveurs enregistrent dans des journaux techniques l'adresse IP et le navigateur de chaque visiteur.",
             "Google fournit les polices de caractères utilisées ici. Leur chargement communique votre adresse IP à Google.",
             "Si vous choisissez de nous contacter via WhatsApp, cette conversation est traitée par WhatsApp selon ses propres conditions. Le recours à WhatsApp relève toujours de votre choix ; le formulaire fonctionne sans lui.",
             "Lorsqu'une demande l'exige, nous transmettons les éléments produit et livraison nécessaires aux fournisseurs et transitaires indispensables pour chiffrer et expédier votre commande. Nous ne transmettons que ce dont ces parties ont besoin."
@@ -113,7 +113,7 @@
         {
           "title": "Combien de temps nous les conservons",
           "body": [
-            "Les demandes de devis sont conservées le temps nécessaire au traitement de la demande et des relations commerciales qui en découlent, ainsi que pour satisfaire aux obligations comptables et douanières de conservation.",
+            "Les demandes de devis sont conservées dans notre messagerie le temps nécessaire au traitement de la demande et des relations commerciales qui en découlent, ainsi que pour satisfaire aux obligations comptables et douanières de conservation.",
             "Si une demande n'aboutit pas, nous la supprimons dès qu'elle n'est manifestement plus d'actualité. Vous pouvez à tout moment nous demander de la supprimer plus tôt."
           ]
         },

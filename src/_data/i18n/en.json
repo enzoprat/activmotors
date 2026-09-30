@@ -215,7 +215,6 @@
       "DDP"
     ],
     "files_note": "Have a parts list, photos or specifications? Send them on WhatsApp or by e-mail once you have submitted this form — we will match them to your request.",
-    "email_subject": "New quote request from the website",
     "wa_title": "Quote request — Activmotors",
     "wa_product": "Product",
     "wa_qty": "Quantity",
@@ -390,5 +389,21 @@
         "url": "/en/privacy-policy/"
       }
     ]
+  },
+  "email": {
+    "confirm_subject": "We have received your request — Activmotors",
+    "greeting": "Hello",
+    "body": [
+      "Thank you for your enquiry to Activmotors.",
+      "We have received it and will come back to you shortly with the available details and pricing.",
+      "Speak soon,"
+    ],
+    "signature": "Anthony",
+    "company": "Activmotors",
+    "tagline": "ALL VEHICLES. ALL PARTS. ONE BRAND.",
+    "recap_title": "Summary of your request",
+    "notify_subject": "New quote request",
+    "notify_intro": "Request received from the website. Reply to this message to reach the customer directly.",
+    "footer_note": "This e-mail confirms we received your request. You can reply to it to send us further details, photographs or a parts list."
   }
 }

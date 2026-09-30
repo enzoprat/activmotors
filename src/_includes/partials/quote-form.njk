@@ -6,7 +6,7 @@
       <p class="qform__sub">{{ t.quote.subtitle }}</p>
 
       <form class="qform__form" id="quoteForm" novalidate
-            action="https://api.web3forms.com/submit" method="POST"
+            action="/api/quote" method="POST"
             data-locale="{{ locale }}"
             data-wa="{{ site.company.whatsapp_number }}"
             data-vehicle-category="{{ t.quote.vehicle_category }}"
@@ -16,9 +16,6 @@
               "shipping": t.quote.wa_shipping, "company": t.quote.wa_company
             } | jsonld | safe }}'>
 
-        <input type="hidden" name="access_key" value="{{ site.web3forms_key }}">
-        <input type="hidden" name="subject" value="{{ t.quote.email_subject }}">
-        <input type="hidden" name="from_name" value="{{ site.company.legal_name }}">
         <input type="hidden" name="language" value="{{ t.label }}">
         {#- Honeypot: bots fill it, people never see it. -#}
         <label class="botcheck" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
